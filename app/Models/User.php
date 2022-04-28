@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,11 +20,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $table = "users";
     protected $fillable = [
         'name',
-        'username',
         'email',
         'password',
-        'role',
-        'profile_photo_path',
+        'no_hp',
     ];
 
     /**
@@ -46,18 +45,17 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-   /**
+    /**
     * Get the kas_masjid associated with the User
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasOne
     */
-   public function kas_masjid()
-   {
-       return $this->hasMany(kas_masjid::class);
-   }
 
-   public function saldo()
-   {
-       return $this->hasMany(saldo::class);
-   }
+    public function transaksi(){
+        return $this->hasMany(transaksi::class);
+    }
+
+    public function comment(){
+        return $this->hasMany(transaksi::class);
+    }
 }
