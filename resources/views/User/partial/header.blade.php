@@ -3,9 +3,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid container-lg py-2">
         <a class="navbar-brand" href="#">
-            <img src="{{asset('image/logo-masjid.png')}}" style="width: 50px" alt="">
+            <img src="{{asset('image/laznas.jpg')}}" style="width: 50px" alt="">
             <p class="m-0 d-inline">
-                ABU BAKAR AS-SHIDDIQ
+                Laznas Al-Irsyad Jember
             </p>
         </a>
         <div>
