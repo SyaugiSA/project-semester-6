@@ -7,10 +7,8 @@
             </div>
             <div class="row contact">
                 <div class="col">
-                    <a href="" target="_blank"> <button class="btn btn-success w-75 btn-sm my-3"><i
-                                class="fab fa-whatsapp"></i> 123123897123 ( ketua Takmir )</button> </a>
-                    <a href="" target="_blank"> <button class="btn btn-success w-75 btn-sm my-3"><i
-                                class="fab fa-whatsapp"></i> 123123897123 ( Wakil Takmir )</button> </a>
+                    <a href="" target="_blank"> <button class="btn btn-success w-80 btn-sm my-4"><i
+                                class="fab fa-whatsapp"></i> 123123897123 ( Ketua Cabang Jember )</button> </a>
                     <a href="https://wa.me/6282235236662" target="_blank"><button class="btn btn-success w-75 btn-sm my-3"><i
                                 class="fab fa-whatsapp"></i> 082235236662 ( Admin )</button></a>
                 </div>
@@ -19,9 +17,9 @@
             <div class="row mt-3">
                 <div class="col">
 
-                    <a href="https://goo.gl/maps/xZmTC9G3UB5wS2Gp9" target="_blank">
+                    <a href="https://goo.gl/maps/Cq2XUmgXZMqGbRAe8" target="_blank">
                         <button class="btn btn-success btn-md "><i class="fas fa-map-marked-alt"></i> Lokasi
-                            Masjid</button>
+                            </button>
                     </a>
 
 
@@ -68,12 +66,12 @@
         <div class="row mx-auto my-4">
             <div class="col px-0">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1974.6891469106122!2d113.68711797935231!3d-8.164588419583291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd69594f4f6e6ab%3A0x102db4007c5252f6!2sMasjid!5e0!3m2!1sid!2sid!4v1630678742115!5m2!1sid!2sid"
+                    src="https://www.google.com/maps/place/Laznas+Al+Irsyad+Jember+Lt.3/@-8.1794816,113.7169145,15z/data=!4m5!3m4!1s0x0:0x863c4678e15984f9!8m2!3d-8.1794816!4d113.7169145"
                     height="400" style="border:0;" class="w-100" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>
     <div class="row border-top py-3">
-        © 2021 Masjid Abu Bakar As Shiddiq
+        © 2022 Laznas Al-Irsyad Jember
     </div>
 </div>
