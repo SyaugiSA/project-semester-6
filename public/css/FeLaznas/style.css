@@ -560,7 +560,7 @@
     position: relative;
     background-color: var(--main);
   }
-  .card-profile-masjid h4{
+  .card-profile-masjid h5{
     color: rgb(250, 246, 246);
   }
   
