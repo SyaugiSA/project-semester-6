@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\userAbout\AboutController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('User.partial.home');
 });
 
-Route::get('/about',[AboutController::class,'index']);
+
