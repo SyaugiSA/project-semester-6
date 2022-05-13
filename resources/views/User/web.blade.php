@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/FeLaznas/style.css')}}">
+    <script src="https://kit.fontawesome.com/bc2d8b57a2.js" crossorigin="anonymous"></script>
     <title>Laznas</title>
     
     @yield('head')

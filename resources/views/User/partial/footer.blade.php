@@ -65,9 +65,7 @@
         </div>
         <div class="row mx-auto my-4">
             <div class="col px-0">
-                <iframe
-                    src="https://www.google.com/maps/place/Laznas+Al+Irsyad+Jember+Lt.3/@-8.1794816,113.7169145,15z/data=!4m5!3m4!1s0x0:0x863c4678e15984f9!8m2!3d-8.1794816!4d113.7169145"
-                    height="400" style="border:0;" class="w-100" allowfullscreen="" loading="lazy"></iframe>
+                <div class="mapouter"><div class="gmap_canvas"><iframe width="1020" height="477" id="gmap_canvas" src="https://maps.google.com/maps?q=al%20irsyad%20jember&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://putlocker-is.org"></a><br><style>.mapouter{position:relative;text-align:right;height:477px;width:1020px;}</style><a href="https://www.embedgooglemap.net">free map for website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:477px;width:1020px;}</style></div></div>
             </div>
         </div>
     </div>

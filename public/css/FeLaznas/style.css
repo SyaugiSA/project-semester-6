@@ -690,6 +690,300 @@
   
     
   }
+
+     
+  /* css untuk card donation  */
+
+.card-donation {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  border-radius: 20px;
+  transition: transform .2s;
+  background-color: white;
+}
+
+.card-donation p{
+  font-family: 'Courier New', Courier, monospace;
+  text-align: left;
+  margin: 10px;
+  
+}
+.card-donation .title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.card-donation img{
+  width: 100%;
+  height: 350px;
+  border-radius: 20px;
+  margin: auto;
+  
+}
+
+.card-donation:hover{
+  transform: scale(1.2);
+}
+
+/* progress donasi */
+ .progress-donation {
+  background-color: #d8d8d8;
+  border-radius: 50px;
+  height: 25px;
+  width: 300px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+ .progress-donation-done{
+  background:linear-gradient(to left, #168827, #136c20);
+  box-shadow: 0 3px 3px -5px #168827, 0 2px 5px #168827;
+  color: #d8d8d8;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content:center ;
+  border-radius: 50px; 
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease;
+}
+
+
+/* button donasi */
+.btn-donation{
+  background-color: var(--secondary);
+  border: none;
+  font-weight: 700;
+  color: var(--main);
+  padding: 0.5rem 1rem;
+}
+.btn-donation:hover {
+  background-color: var(--main);
+  color: var(--secondary);
+}
+
+
+/* halaman detail donasi */
+.foto-donasi {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  
+}
+.foto-donasi img{
+  width: 50%;
+  border-radius: 50px;
+
+}
+
+.progress-donation-detail {
+  background-color: #d8d8d8;
+  border-radius: 50px;
+  height: 25px;
+  width: 900px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.progress-donation-done-detail{
+  background:linear-gradient(to left, #168827, #136c20);
+  box-shadow: 0 3px 3px -5px #168827, 0 2px 5px #168827;
+  color: #d8d8d8;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content:center ;
+  border-radius: 50px; 
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease;
+}
+
+/* header atau navbar */
+
+ .right-nav a{
+  margin: 5px;
+  color: #136c20;
+}
+
+
+@media (max-width: 575.98px) { 
+  .card-donation:hover{
+    transform: scale(1.1);
+  }
+  .foto-donasi {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    
+  }
+  .foto-donasi img{
+    width: 100%;
+    border-radius: 50px;
+    height: 400px;
+  }
+  .title-detail-donation {
+    text-align: left;
+    
+  }
+
+  
+
+}
+
+@media (max-width: 1199.98px) { 
+  .progress-donation {
+    background-color: #d8d8d8;
+    border-radius: 50px;
+    height: 25px;
+    width: 250px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .foto-donasi {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    
+  }
+  .foto-donasi img{
+    width: 100%;
+    border-radius: 50px;
+    height: 600PX;
+  }
+  .title-detail-donation {
+    text-align: left;
+  }
+
+
+}
+
+@media (max-width: 991.98px) { 
+  .progress-donation {
+    background-color: #d8d8d8;
+    border-radius: 50px;
+    height: 25px;
+    width: 300px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .foto-donasi {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    
+  }
+  .foto-donasi img{
+    width: 100%;
+    border-radius: 50px;
+    height: 400px;
+  }
+  .title-detail-donation {
+    text-align: left;
+  }
+
+
+  .progress-donation-detail {
+    background-color: #d8d8d8;
+    border-radius: 50px;
+    height: 25px;
+    width: 550px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+}
+
+@media (max-width: 767.98px) { 
+  .progress-donation {
+    background-color: #d8d8d8;
+    border-radius: 50px;
+    height: 25px;
+    width: 200px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .foto-donasi {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    
+  }
+  .foto-donasi img{
+    width: 100%;
+    border-radius: 50px;
+    height: 400px;
+  }
+  .title-detail-donation {
+    text-align: left;
+  }
+
+  .progress-donation-detail {
+    background-color: #d8d8d8;
+    border-radius: 50px;
+    height: 25px;
+    width: 450px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+}
+
+@media (max-width: 575.98px) { 
+  .progress-donation {
+    background-color: #d8d8d8;
+    border-radius: 50px;
+    height: 25px;
+    width: 300px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+
+  .progress-donation-detail {
+    background-color: #d8d8d8;
+    border-radius: 50px;
+    height: 25px;
+    width: 300px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+
+@media (min-width: 1200px) { 
+  .foto-donasi {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    
+  }
+  .foto-donasi img{
+    width: 100%;
+    border-radius: 50px;
+    height: 600px;
+  }
+  .title-detail-donation {
+    text-align: left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+ }
   
   /* Medium devices (tablets, 768px and up) */
   @media (min-width: 768px) {

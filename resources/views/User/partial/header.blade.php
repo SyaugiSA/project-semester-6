@@ -25,7 +25,7 @@
                     <a class="nav-link" href="{{url('/about')}}">About Us</a>
                 </li>
                 <li class="nav-item mx-lg-4">
-                    <a class="nav-link" href="{{url('/event')}}">Event</a>
+                    <a class="nav-link" href="{{url('/artikel')}}">Artikel</a>
                 </li>
                 <li class="nav-item mx-lg-4">
                     <a class="nav-link" href="{{url('/donate')}}">Donate</a>
@@ -34,10 +34,17 @@
                     <a class="nav-link" href="{{url('/service')}}">Service</a>
                 </li>
             </ul>
-            <i class="fas fa-search me-xl-5 me-lg-3 d-none d-lg-inline-block btn-search"></i>
-            <button class="rounded-pill w-100 get-involved">
+            {{-- <i class="fas fa-search me-xl-5 me-lg-3 d-none d-lg-inline-block btn-search"></i> --}}
+            {{-- <button class="rounded-pill w-100 get-involved">
                 Get Involved
-            </button>
+            </button> --}}
+            <div class="right-nav">
+
+                <a href="" ><i class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="{{url('/seting')}}"><i class="fa-solid fa-gear"></i></a>
+            </div>
+
+
         </div>
     </div>
 </nav>
