@@ -46,7 +46,7 @@ class ArtikelController extends Controller
                 $artikel->save();
             });
 
-            return redirect()->route('')->with(['success'=>'Berhasil menambahkan artikel']);
+            return redirect()->route('artikel.index')->with(['success'=>'Berhasil menambahkan artikel']);
         } catch(Exception $e){
             report($e->getMessage());
 
@@ -97,7 +97,7 @@ class ArtikelController extends Controller
                 $artikel->save();
             });
 
-            return redirect()->route('')->with(['success'=>'Berhasil memperbarui artikel']);
+            return redirect()->route('artikel.index')->with(['success'=>'Berhasil memperbarui artikel']);
         } catch (Exception $e){
             report($e->getMessage());
 
@@ -116,6 +116,6 @@ class ArtikelController extends Controller
         $artikel = new artikel();
         $artikel->delete();
 
-        return redirect()->route('')->with(['success'=>'Artikel berhasil dihapus']);
+        return redirect()->route('artikel.index')->with(['success'=>'Artikel berhasil dihapus']);
     }
 }
