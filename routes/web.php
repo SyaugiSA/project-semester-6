@@ -29,23 +29,23 @@ Route::get('/about', function(){
 });
 
 Route::prefix('/doate')->group(function(){
-    Route::get('/', [DonateController::class, 'index']);
-    Route::get('/{id}', [DonateController::class, 'show']);
-    Route::get('/create', [DonateController::class, 'create']);
-    Route::post('/create', [DonateController::class, 'store']);
-    Route::get('/{id}/edit', [DonateController::class, 'edit']);
-    Route::put('/{id}/edit', [DonateController::class, 'update']);
-    Route::delete('/{id}', [DonateController::class, 'destroy']);
+    Route::get('/', [DonateController::class, 'index'])->name('donate.index');
+    Route::get('/{id}', [DonateController::class, 'show'])->name('donate.show');
+    Route::get('/create', [DonateController::class, 'create'])->name('donate.create');
+    Route::post('/create', [DonateController::class, 'store'])->name('donate.store');
+    Route::get('/{id}/edit', [DonateController::class, 'edit'])->name('donate.edit');
+    Route::put('/{id}/edit', [DonateController::class, 'update'])->name('donate.update');
+    Route::delete('/{id}', [DonateController::class, 'destroy'])->name('donate.destroy');
 });
 
 Route::prefix('/artikel')->group(function(){
-    Route::get('/', [ArtikelController::class, 'index']);
-    Route::get('/{id}', [ArtikelController::class, 'show']);
-    Route::get('/create', [ArtikelController::class, 'create']);
-    Route::post('/create', [ArtikelController::class, 'store']);
-    Route::get('/{id}/edit', [ArtikelController::class, 'edit']);
-    Route::put('/{id}/edit', [ArtikelController::class, 'update']);
-    Route::delete('/{id}', [ArtikelController::class, 'destroy']);
+    Route::get('/', [ArtikelController::class, 'index'])->name('artikel.index');
+    Route::get('/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+    Route::get('/create', [ArtikelController::class, 'create'])->name('artikel.create');
+    Route::post('/create', [ArtikelController::class, 'store'])->name('artikel.store');
+    Route::get('/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
+    Route::put('/{id}/edit', [ArtikelController::class, 'update'])->name('artikel.update');
+    Route::delete('/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
 });
 
 Route::get('/seting', function () {
