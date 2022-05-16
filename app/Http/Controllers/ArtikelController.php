@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\artikel;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArtikelController extends Controller
 {
@@ -13,7 +16,9 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        return view('User.halaman.artikel');
+        $data = artikel::get();
+
+        return view('User.halaman.artikel', $data);
     }
 
     /**
@@ -23,7 +28,7 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
@@ -34,7 +39,19 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            DB::transaction(function () use($request) {
+                $artikel = new artikel();
+                $artikel->fill($request->all());
+                $artikel->save();
+            });
+
+            return redirect()->route('')->with(['success'=>'Berhasil menambahkan artikel']);
+        } catch(Exception $e){
+            report($e->getMessage());
+
+            return redirect()->back()->withErrors(['error'=>'Terjadi error'])->withInput();
+        }
     }
 
     /**
@@ -45,7 +62,9 @@ class ArtikelController extends Controller
      */
     public function show($id)
     {
-        return view('User.halaman.artikel-detail');
+        $data = artikel::select($id)->first();
+
+        return view('User.halaman.artikel-detail', $data);
     }
 
     /**
@@ -56,7 +75,9 @@ class ArtikelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = artikel::select($id)->first();
+
+        return view('', $data);
     }
 
     /**
@@ -68,7 +89,20 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            DB::transaction(function() use($request, $id){
+                $artikel = new artikel();
+                $artikel->select('id', $id)->first();
+                $artikel->fill($request->all());
+                $artikel->save();
+            });
+
+            return redirect()->route('')->with(['success'=>'Berhasil memperbarui artikel']);
+        } catch (Exception $e){
+            report($e->getMessage());
+
+            return redirect()->back()->withErrors(['error'=>'Gagal memperbarui artikel']);
+        }
     }
 
     /**
@@ -79,6 +113,9 @@ class ArtikelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $artikel = new artikel();
+        $artikel->delete();
+
+        return redirect()->route('')->with(['success'=>'Artikel berhasil dihapus']);
     }
 }
