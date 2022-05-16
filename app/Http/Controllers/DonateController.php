@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\donasi;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DonateController extends Controller
 {
@@ -13,7 +16,8 @@ class DonateController extends Controller
      */
     public function index()
     {
-        return view('User.halaman.donate');
+        $data = donasi::select()->all();
+        return view('User.halaman.donate', $data);
     }
 
     /**
@@ -23,7 +27,7 @@ class DonateController extends Controller
      */
     public function create()
     {
-
+        return view('');
     }
 
     /**
@@ -34,7 +38,19 @@ class DonateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            DB::transaction(function() use($request){
+                $donate = new donasi();
+                $donate->fill($request->all());
+                $donate->is_actived = $request->has('is_active')?1:0;
+                $donate->save();
+            });
+
+            return redirect()->route('donate.index')->with(['success'=>'Berhasil menambahkan donasi']);
+        }catch (Exception $e){
+            report($e->getMessage());
+            return redirect()->back()->withErrors(['error'=>'Terjadi kesalahan'])->withInput();
+        }
     }
 
     /**
@@ -45,7 +61,8 @@ class DonateController extends Controller
      */
     public function show($id)
     {
-        return view('User.halaman.donation-detail');
+        $data = donasi::select('id', $id)->first();
+        return view('User.halaman.donation-detail', $data);
     }
 
     /**
@@ -56,7 +73,8 @@ class DonateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = donasi::select('id', $id)->first();
+        return view('', $data);
     }
 
     /**
@@ -68,7 +86,20 @@ class DonateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            DB::transaction(function() use($request, $id){
+                $donate = new donasi();
+                $donate->select('id', $id);
+                $donate->fill($request->all());
+                $donate->is_actived = $request->has('is_active')?1:0;
+                $donate->save();
+            });
+
+            return redirect()->route('donate.index')->with(['success'=>'Behasil memperbarui donasi']);
+        } catch (Exception $e){
+            report($e->getMessage());
+            return redirect()->back()->withErrors(['error'=>'Terjadi Error'])->withInput();
+        }
     }
 
     /**
@@ -79,6 +110,10 @@ class DonateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $donate = new donasi();
+        $donate->select('id', $id);
+        $donate->delete();
+
+        return redirect()->route('donate.index')->with(['success'=>'Berhasil menghapus donasi']);
     }
 }
