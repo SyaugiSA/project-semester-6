@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\DonateController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,21 +28,26 @@ Route::get('/about', function(){
     return view('User.About Us.about');
 });
 
-
-Route::get('/donate', function () {
-    return view('User.halaman.donate');
+Route::prefix('/doate')->group(function(){
+    Route::get('/', [DonateController::class, 'index'])->name('donate.index');
+    Route::get('/{id}', [DonateController::class, 'show'])->name('donate.show');
+    Route::get('/create', [DonateController::class, 'create'])->name('donate.create');
+    Route::post('/create', [DonateController::class, 'store'])->name('donate.store');
+    Route::get('/{id}/edit', [DonateController::class, 'edit'])->name('donate.edit');
+    Route::put('/{id}/edit', [DonateController::class, 'update'])->name('donate.update');
+    Route::delete('/{id}', [DonateController::class, 'destroy'])->name('donate.destroy');
 });
 
-Route::get('/donate/detail', function () {
-    return view('User.halaman.donation-detail');
+Route::prefix('/artikel')->group(function(){
+    Route::get('/', [ArtikelController::class, 'index'])->name('artikel.index');
+    Route::get('/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+    Route::get('/create', [ArtikelController::class, 'create'])->name('artikel.create');
+    Route::post('/create', [ArtikelController::class, 'store'])->name('artikel.store');
+    Route::get('/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
+    Route::put('/{id}/edit', [ArtikelController::class, 'update'])->name('artikel.update');
+    Route::delete('/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
 });
 
-Route::get('/artikel', function () {
-    return view('User.halaman.artikel');
-});
-Route::get('/artikel/detail', function () {
-    return view('User.halaman.artikel-detail');
-});
 Route::get('/seting', function () {
     return view('User.halaman.seting-akun');
 });
