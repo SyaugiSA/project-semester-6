@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArtikelAdminController;
+use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
 use Illuminate\Support\Facades\Route;
@@ -72,6 +73,8 @@ Route::group(['prefix' => 'admin'], function () {
     });
     
     Route::resource('/artikel-admin', ArtikelAdminController::class);
+    Route::resource('/donasi-admin', DonasiAdminController::class );
+
 });
 
 

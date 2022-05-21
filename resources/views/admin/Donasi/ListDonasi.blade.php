@@ -24,11 +24,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Artikel Laznas</h1>
+                    <h1>Donasi Laznas</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Artikel Laznas</a></li>
+                        <li class="breadcrumb-item"><a href="#">Donasi Laznas</a></li>
                     </ol>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <div id="fails_message"></div>
                     <div class="card">
                         <div class="card-header bg-primary">
-                            <h3 class="card-title ">Data Artikel Laznas</h3>
+                            <h3 class="card-title ">Donasi Laznas</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -57,8 +57,8 @@
 
                             <div class="mb-3">
 
-                                <a href="{{ route('artikel-admin.create') }}" class="btn btn-primary my-3"><i
-                                        class="fas fa-info"></i> Tambah Data Artikel</a>
+                                <a href="{{ route('donasi-admin.create') }}" class="btn btn-primary my-3"><i
+                                        class="fas fa-info"></i> Tambah Data Donasi</a>
 
 
                             </div>
@@ -71,6 +71,7 @@
                                         <th>No</th>
                                         <th>Judul</th>
                                         <th>Tanggal</th>
+                                        <th>Jumlah</th>
                                         <th>Deskripsi</th>
                                         <th>Foto</th>
                                         <th>Aksi</th>
@@ -84,6 +85,7 @@
                                             <td>nomor</td>
                                             <td>JUDULLL</td>
                                             <td>Tanggal</td>
+                                            <td>Jumlah yang dana</td>
                                             <td>Deskripsi</td>
                                             <td>
                                                 {{-- @foreach ($d->photo as $photo )
@@ -113,6 +115,7 @@
                                         <th>No</th>
                                         <th>Judul</th>
                                         <th>Tanggal</th>
+                                        <th>Jumlah Dana</th>
                                         <th>Deskripsi</th>
                                         <th>Foto</th>
                                         <th>Aksi</th>
