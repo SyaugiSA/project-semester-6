@@ -16,7 +16,7 @@ class DonateController extends Controller
      */
     public function index()
     {
-        $data = donasi::select()->all();
+        $data = donasi::get();
         return view('User.halaman.donate', $data);
     }
 

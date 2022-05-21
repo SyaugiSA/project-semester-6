@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArtikelAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,7 @@ Route::get('/about', function(){
     return view('User.About Us.about');
 });
 
-Route::prefix('/doate')->group(function(){
+Route::prefix('/donate')->group(function(){
     Route::get('/', [DonateController::class, 'index'])->name('donate.index');
     Route::get('/{id}', [DonateController::class, 'show'])->name('donate.show');
     Route::get('/create', [DonateController::class, 'create'])->name('donate.create');
@@ -48,9 +49,33 @@ Route::prefix('/artikel')->group(function(){
     Route::delete('/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
 });
 
+
+
+
+
+
 Route::get('/seting', function () {
     return view('User.halaman.seting-akun');
 });
+
+
+
+// yang faros rubah -- soale masih pusing baca codingan saugi
+Route::get('/donass/detail', function () {
+    return view('User.halaman.donation-detail');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    
+    Route::get('/',function(){
+        return view('admin.index');
+    });
+    
+    Route::resource('/artikel-admin', ArtikelAdminController::class);
+});
+
+
+
 
 
 
