@@ -75,7 +75,8 @@
                             <input type="checkbox" name="" id="check">
                             <label for="">Sembunyikan nama / hamba allah</label>
                         </div>
-                        
+
+                        <label class="fieldlabels mb-2">Pilih Rekening : </label> <br>
                         <select name=""  id="selectBank">
                             <option >--Pilih Rekening--</option>
                             <option value="Bri" class="fieldlabels">BANK BRI</option>
@@ -83,6 +84,7 @@
                             <option value="Bni" class="fieldlabels">BANK BNI</option>
                             <option value="Mandiri" class="fieldlabels">BANK MANDIRI</option>
                         </select>
+
                         <div id="showBri" class="myDiv">
                             <img src="{{asset('image/Bank Rakyat Indonesia (BRI).png')}}"/><span>0129301923091</span>
                         </div>
@@ -109,10 +111,9 @@
                                 <h2 class="steps">Step 2 - 3</h2>
                             </div>
                         </div>
-                        <label class="fieldlabels">Upload Your Photo:</label>
+                        <label class="fieldlabels">UUpload Bukti Transfer</label>
                         <input type="file" name="pic" accept="image/*">
-                        <label class="fieldlabels">Upload Signature Photo:</label>
-                        <input type="file" name="pic" accept="image/*">
+                        
                     </div>
                     <input type="button" name="next" class="next action-button" value="Submit"/>
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
