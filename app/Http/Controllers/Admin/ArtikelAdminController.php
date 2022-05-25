@@ -1,41 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Kas_Masjid;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\saldo;
-use App\Models\kas_masjid;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class RekapController extends Controller
+class ArtikelAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
     public function index()
     {
-        $saldo = saldo::orderBy('tanggal','asc')->first();
-        if (!$saldo) {
-            $saldo = (array)$saldo;
-            $saldo['saldo'] = 0;
-            $saldo = (object)$saldo;
-        }
-        $rekap = kas_masjid::orderBy('tanggal','asc')->get();
-        return view('admin.Kas_Masjid.rekap',compact('rekap','saldo'));
-        
+        return view('admin.Artikel.Listartikel');
     }
-    function datarekap(){
-        $data_rkp = kas_masjid::orderBy('tanggal','asc')->get();
-        return response()->json([
-            'rekap' => $data_rkp 
-        ]);
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,7 +24,7 @@ class RekapController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.Artikel.add_artikel');
     }
 
     /**
