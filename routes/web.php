@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -106,14 +107,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
 
 });
 
-<<<<<<< Updated upstream
-=======
-
-
-
-
->>>>>>> Stashed changes
 Auth::routes();
 Auth::routes(['verify' => true]);;
+
+Route::post('/coba', function(Request $request){
+    dd($request);
+})->name('coba');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

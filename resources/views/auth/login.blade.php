@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up </title>
+    <title>Sign In </title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="{{asset('colorib/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{asset('colorib/css/style.css')}}">
-   
+
     <script src="https://kit.fontawesome.com/bc2d8b57a2.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -49,7 +49,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
-                            </div>
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
@@ -58,14 +57,6 @@
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
                             </div>
                         </form>
-                        {{-- <div class="social-login">
-                            <span class="social-label">Or login with</span>
-                            <ul class="socials">
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-google"></i></a></li>
-                            </ul>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -73,6 +64,6 @@
 
     </div>
 
-  
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</body>
 </html>
