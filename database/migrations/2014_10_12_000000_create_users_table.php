@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('no_hp')->nullable();
+            $table->integer('id_hak_akses')->unsigned()->default(2);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

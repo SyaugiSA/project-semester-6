@@ -30,14 +30,25 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
-                        <form method="POST" class="register-form" id="login-form">
+                        <form method="POST" action="{{ route('login') }}" class="register-form" id="login-form">
+                            @csrf
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="email" name="your_name" id="your_name" placeholder="Email"/>
+                                <input type="email" class="@error('email') is-invalid @enderror" name="email" id="your_name" placeholder="Email"/>
+                                @error('email')
+                                <span class="invalid-feedback" style="color: red" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                <input type="password" class="@error('password') is-invalid @enderror" name="password" id="your_pass" placeholder="Password"/>
+                                @error('password')
+                                <span class="invalid-feedback" style="color: red" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />

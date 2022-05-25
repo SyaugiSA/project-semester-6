@@ -39,9 +39,21 @@
                 Get Involved
             </button> --}}
             <div class="right-nav">
+                @if (Auth::check())
+                <a style="color: red" href="{{ route('logout') }}"><i class="fa-solid fa-right-to-bracket" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"></i>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
 
-                <a href="" ><i class="fa-solid fa-right-to-bracket"></i></a>
                 <a href="{{url('/seting')}}"><i class="fa-solid fa-gear"></i></a>
+                @else
+                
+                <a href="{{route('login')}}" ><i class="fa-solid fa-right-to-bracket"></i></a>
+                
+                @endif
+                
             </div>
 
 

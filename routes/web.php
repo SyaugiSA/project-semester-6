@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArtikelAdminController;
 use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,13 +18,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+// Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+
+
+
+
 
 Route::get('/', function () {
     return view('User.partial.home');
-});
+})->name('user');
 
 
 Route::get('/about', function(){
@@ -83,26 +86,34 @@ Route::prefix('/donate')->group(function(){
 
 Route::get('/seting', function () {
     return view('User.halaman.seting-akun');
-});
+})->middleware('auth');
 
 
 
 // yang faros rubah -- soale masih pusing baca codingan saugi
 Route::get('/donass/detail', function () {
     return view('User.halaman.donation-detail');
-});
+})->middleware('auth');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
     
     Route::get('/',function(){
         return view('admin.index');
-    });
+    })->name('admin');
     
     Route::resource('/artikel-admin', ArtikelAdminController::class);
     Route::resource('/donasi-admin', DonasiAdminController::class );
 
 });
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+>>>>>>> Stashed changes
 Auth::routes();
+Auth::routes(['verify' => true]);;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
