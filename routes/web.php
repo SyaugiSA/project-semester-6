@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ArtikelAdminController;
+use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,7 @@ Route::get('/about', function(){
     return view('User.About Us.about');
 });
 
+
 Route::get('/donate', [DonateController::class, 'index'])->name('donate.index');
 Route::get('/donate/{id}', [DonateController::class, 'show'])->name('donate.show');
 
@@ -55,6 +58,17 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function(){
         Route::delete('/{id}', [ArtikelController::class, 'destroy'])->name('dashboard.artikel.destroy');
     });
 
+Route::prefix('/donate')->group(function(){
+    Route::get('/', [DonateController::class, 'index'])->name('donate.index');
+    Route::get('/{id}', [DonateController::class, 'show'])->name('donate.show');
+    Route::get('/create', [DonateController::class, 'create'])->name('donate.create');
+    Route::post('/create', [DonateController::class, 'store'])->name('donate.store');
+    Route::get('/{id}/edit', [DonateController::class, 'edit'])->name('donate.edit');
+    Route::put('/{id}/edit', [DonateController::class, 'update'])->name('donate.update');
+    Route::delete('/{id}', [DonateController::class, 'destroy'])->name('donate.destroy');
+});
+
+
     Route::prefix('/donasi')->group(function(){
         Route::get('/', [DonateController::class, 'index'])->name('dashboard.donasi.index');
         Route::get('/{id}', [DonateController::class, 'show'])->name('dashboard.donasi.show');
@@ -69,6 +83,24 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function(){
 
 Route::get('/seting', function () {
     return view('User.halaman.seting-akun');
+});
+
+
+
+// yang faros rubah -- soale masih pusing baca codingan saugi
+Route::get('/donass/detail', function () {
+    return view('User.halaman.donation-detail');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    
+    Route::get('/',function(){
+        return view('admin.index');
+    });
+    
+    Route::resource('/artikel-admin', ArtikelAdminController::class);
+    Route::resource('/donasi-admin', DonasiAdminController::class );
+
 });
 
 Auth::routes();

@@ -19,7 +19,7 @@ class CreateDonasisTable extends Migration
             $table->string('deskripsi');
             $table->integer('jumlah');
             $table->string('gambar');
-            $table->date('started_at')->default(new DateTime());
+            $table->timestamp('added_at');
             $table->date('ended_at');
             $table->tinyInteger('is_actived');
             $table->timestamps();

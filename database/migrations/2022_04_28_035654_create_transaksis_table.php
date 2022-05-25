@@ -15,8 +15,8 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('donasi_id')->references('id')->on('donasis')->onDelete('cascade');
+            $table->string('user_id');
+            $table->string('donasi_id');
             $table->integer('jumlah');
             $table->string('bukti');
             $table->tinyInteger('is_verified')->default(1);
