@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -72,5 +73,9 @@ Route::get('/seting', function () {
 });
 
 Auth::routes();
+
+Route::post('/coba', function(Request $request){
+    dd($request);
+})->name('coba');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
