@@ -4,7 +4,12 @@ use App\Http\Controllers\Admin\ArtikelAdminController;
 use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
+<<<<<<< Updated upstream
 use Illuminate\Http\Request;
+=======
+use App\Http\Controllers\TransaksiController;
+use Illuminate\Support\Facades\Auth;
+>>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,11 +31,9 @@ Route::get('/', function () {
     return view('User.partial.home');
 });
 
-
 Route::get('/about', function(){
     return view('User.About Us.about');
-});
-
+})->name('about-us');
 
 Route::get('/donate', [DonateController::class, 'index'])->name('donate.index');
 Route::get('/donate/{id}', [DonateController::class, 'show'])->name('donate.show');
@@ -38,47 +41,28 @@ Route::get('/donate/{id}', [DonateController::class, 'show'])->name('donate.show
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
 
-Route::prefix('/dashboard')->middleware(['auth'])->group(function(){
-    Route::prefix('/donate')->group(function(){
-        Route::get('/', [DonateController::class, 'index'])->name('dashboard.donate.index');
-        Route::get('/{id}', [DonateController::class, 'show'])->name('dashboard.donate.show');
-        Route::get('/create', [DonateController::class, 'create'])->name('dashboard.donate.create');
-        Route::post('/create', [DonateController::class, 'store'])->name('dashboard.donate.store');
-        Route::get('/{id}/edit', [DonateController::class, 'edit'])->name('dashboard.donate.edit');
-        Route::put('/{id}/edit', [DonateController::class, 'update'])->name('dashboard.donate.update');
-        Route::delete('/{id}', [DonateController::class, 'destroy'])->name('dashboard.donate.destroy');
+Route::middleware(['auth'])->group(function(){
+    Route::prefix('/user')->group(function(){
+
+        Route::get('/seting', function () {
+            return view('User.halaman.seting-akun');
+        })->name('user.seting');
+
+        Route::prefix('/donasi')->group(function(){
+            Route::get('/', [DonateController::class, 'index'])->name('user.donasi.index');
+            Route::get('/{id}', [DonateController::class, 'show'])->name('user.donasi.show');
+        });
+
+        Route::prefix('/artikel')->group(function(){
+            Route::get('/', [ArtikelController::class, 'index'])->name('user.artikel.index');
+            Route::get('/{id}', [ArtikelController::class, 'show'])->name('user.artikel.show');
+        });
+
+        Route::prefix('/transaksi')->group(function(){
+            Route::post('/create', [TransaksiController::class, 'store'])->name('user.transaksi.store');
+        });
     });
-
-    Route::prefix('/artikel')->group(function(){
-        Route::get('/', [ArtikelController::class, 'index'])->name('dashboard.artikel.index');
-        Route::get('/{id}', [ArtikelController::class, 'show'])->name('dashboard.artikel.show');
-        Route::get('/create', [ArtikelController::class, 'create'])->name('dashboard.artikel.create');
-        Route::post('/create', [ArtikelController::class, 'store'])->name('dashboard.artikel.store');
-        Route::get('/{id}/edit', [ArtikelController::class, 'edit'])->name('dashboard.artikel.edit');
-        Route::put('/{id}/edit', [ArtikelController::class, 'update'])->name('dashboard.artikel.update');
-        Route::delete('/{id}', [ArtikelController::class, 'destroy'])->name('dashboard.artikel.destroy');
-    });
-
-Route::prefix('/donate')->group(function(){
-    Route::get('/', [DonateController::class, 'index'])->name('donate.index');
-    Route::get('/{id}', [DonateController::class, 'show'])->name('donate.show');
-    Route::get('/create', [DonateController::class, 'create'])->name('donate.create');
-    Route::post('/create', [DonateController::class, 'store'])->name('donate.store');
-    Route::get('/{id}/edit', [DonateController::class, 'edit'])->name('donate.edit');
-    Route::put('/{id}/edit', [DonateController::class, 'update'])->name('donate.update');
-    Route::delete('/{id}', [DonateController::class, 'destroy'])->name('donate.destroy');
-});
-
-
-    Route::prefix('/donasi')->group(function(){
-        Route::get('/', [DonateController::class, 'index'])->name('dashboard.donasi.index');
-        Route::get('/{id}', [DonateController::class, 'show'])->name('dashboard.donasi.show');
-        Route::get('/create', [DonateController::class, 'create'])->name('dashboard.donasi.create');
-        Route::post('/create', [DonateController::class, 'store'])->name('dashboard.donasi.store');
-        Route::get('/{id}/edit', [DonateController::class, 'edit'])->name('dashboard.donasi.edit');
-        Route::put('/{id}/edit', [DonateController::class, 'update'])->name('dashboard.donasi.update');
-        Route::delete('/{id}', [DonateController::class, 'destroy'])->name('dashboard.donasi.destroy');
-    });
+<<<<<<< Updated upstream
 });
 
 
@@ -101,13 +85,50 @@ Route::group(['prefix' => 'admin'], function () {
     
     Route::resource('/artikel-admin', ArtikelAdminController::class);
     Route::resource('/donasi-admin', DonasiAdminController::class );
+=======
+>>>>>>> Stashed changes
 
+    Route::prefix('/admin')->group(function(){
+        Route::get('/',function(){
+            return view('admin.index');
+        })->name('admin');
+
+        Route::prefix('/donasi')->group(function(){
+            Route::get('/', [DonasiAdminController::class, 'index'])->name('admin.donasi.index');
+            Route::get('/{id}', [DonasiAdminController::class, 'show'])->name('admin.donasi.show');
+            Route::get('/create', [DonasiAdminController::class,'create'])->name('admin.donasi.create');
+            Route::post('/create', [DonasiAdminController::class,'store'])->name('admin.donasi.store');
+            Route::get('/{id}/edit', [DonasiAdminController::class,'edit'])->name('admin.donasi.edit');
+            Route::put('/{id}/edit', [DonasiAdminController::class,'update'])->name('admin.donasi.update');
+            Route::delete('/{id}', [DonasiAdminController::class,'dstroy'])->name('admin.donasi.destroy');
+        });
+
+        Route::prefix('/artikel')->group(function(){
+            Route::get('/', [ArtikelAdminController::class, 'index'])->name('admin.artikel.index');
+            Route::get('/{id}', [ArtikelAdminController::class, 'show'])->name('admin.artikel.show');
+            Route::get('/create', [ArtikelAdminController::class,'create'])->name('admin.artikel.create');
+            Route::post('/create', [ArtikelAdminController::class,'store'])->name('admin.artikel.store');
+            Route::get('/{id}/edit', [ArtikelAdminController::class,'edit'])->name('admin.artikel.edit');
+            Route::put('/{id}/edit', [ArtikelAdminController::class,'update'])->name('admin.artikel.update');
+            Route::delete('/{id}', [ArtikelAdminController::class,'dstroy'])->name('admin.artikel.destroy');
+        });
+
+        Route::prefix('/transaksi')->group(function(){
+            Route::get('/', [TransaksiController::class, 'index'])->name('admin.transaksi.index');
+            Route::get('/{id}', [TransaksiController::class, 'show'])->name('admin.transaksi.show');
+            Route::put('/{id}/edit', [TransaksiController::class, 'update'])->name('admin.transaksi.update');
+        });
+    });
 });
 
 Auth::routes();
+<<<<<<< Updated upstream
 
 Route::post('/coba', function(Request $request){
     dd($request);
 })->name('coba');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+Auth::routes(['verify' => true]);;
+>>>>>>> Stashed changes

@@ -50,7 +50,7 @@
                  </li>
                  {{-- @if (Auth::user()->role == 'admin')                     --}}
                  <li class="nav-item">
-                     <a href="{{route('donasi-admin.index')}}" class="nav-link">
+                     <a href="{{route('admin.donasi.index')}}" class="nav-link">
                          <i class="fas fa-user-tie"></i>
                          <p>
                              Tambah Donasi
@@ -59,20 +59,20 @@
                  </li>
                  {{-- @endif --}}
                  <li class="nav-item">
-                    <a href="{{ route('artikel-admin.index') }}" class="nav-link">
+                    <a href="{{ route('admin.artikel.index') }}" class="nav-link">
                         <i class="fas fa-calendar-alt"></i>
                         <p>
                             Tambah Artikel
                         </p>
                     </a>
                 </li>
-                 
+
 
                  <li class="nav-item">
                      <a href="#" class="nav-link">
                         <i class="fas fa-users"></i>
                          <p>
-                             Laporan Artikel    
+                             Laporan Artikel
                          </p>
                      </a>
                  </li>
@@ -86,10 +86,10 @@
                      </a>
                  </li>
 
-                
-             
-                
-               
+
+
+
+
                    <li class="nav-item">
                      <a href="{{ url('admin/profile-setting') }}" class="nav-link">
                          <i class="fas fa-user-cog"></i>
@@ -104,7 +104,7 @@
                  <li class="nav-item">
                          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                             <i class="fas fa-sign-out-alt"></i>                     
+                             <i class="fas fa-sign-out-alt"></i>
                              {{ __('Logout') }}
 
                          </a>
@@ -114,7 +114,7 @@
                          </form>
                  </li>
 
-                  
+
 
 
          </nav>
