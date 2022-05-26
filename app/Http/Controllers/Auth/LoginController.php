@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -58,8 +60,17 @@ class LoginController extends Controller
       if (auth()->attempt($login)) {
         //JIKA BERHASIL AKAN REDIRECT PADA HOME
         if (Auth::user()->id_hak_akses == 1) {
+
           return redirect()->route('admin');
         } else if (Auth::user()->id_hak_akses == 2) {
+          return redirect()->route('user');
+        }
+
+
+          # code...
+          return redirect()->route('admin');
+        } else if (Auth::user()->id_hak_akses == 2) {
+          # code...
           return redirect()->route('user');
         }
 
@@ -67,10 +78,4 @@ class LoginController extends Controller
       //JIKA SALAH MAKA KEMBALI PADA HALAMAN LOGIN DAN AKAN ADA NOTIFIKASI YANG MUNCUL
       return redirect()->route('login')->with(['error' => 'Username atau Password salah!!!']);
     }
-
-
-
-
-
-
 }

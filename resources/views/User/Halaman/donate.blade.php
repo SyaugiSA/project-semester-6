@@ -16,7 +16,8 @@
                     <div class="progress-donation" >
                         <div class="progress-donation-done" data-done="90" id="text"></div>
                     </div>
-                    <button class="rounded-pill btn-donation m-2">Donasi</button>
+                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
+
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
@@ -30,7 +31,7 @@
                         <div class="progress-donation" >
                             <div class="progress-donation-done" data-done="50" id="text"></div>
                         </div>
-                        <button class="rounded-pill btn-donation m-2">Donasi</button>
+                       <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
@@ -44,7 +45,8 @@
                     <div class="progress-donation" >
                         <div class="progress-donation-done" data-done="90" id="text"></div>
                     </div>
-                    <button class="rounded-pill btn-donation m-2">Donasi</button>
+                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
+
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
@@ -58,7 +60,8 @@
                     <div class="progress-donation" >
                         <div class="progress-donation-done" data-done="90" id="text"></div>
                     </div>
-                    <button class="rounded-pill btn-donation m-2">Donasi</button>
+                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
+
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
@@ -72,7 +75,8 @@
                     <div class="progress-donation" >
                         <div class="progress-donation-done" data-done="90" id="text"></div>
                     </div>
-                    <button class="rounded-pill btn-donation m-2">Donasi</button>
+                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
+
                     </div>
                 </div>
             </div>

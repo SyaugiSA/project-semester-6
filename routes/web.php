@@ -4,12 +4,10 @@ use App\Http\Controllers\Admin\ArtikelAdminController;
 use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
-<<<<<<< Updated upstream
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-=======
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Auth;
->>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,13 +21,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+// Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+
+
+
+
 
 Route::get('/', function () {
     return view('User.partial.home');
-});
+})->name('user');
 
 Route::get('/about', function(){
     return view('User.About Us.about');
@@ -62,31 +62,28 @@ Route::middleware(['auth'])->group(function(){
             Route::post('/create', [TransaksiController::class, 'store'])->name('user.transaksi.store');
         });
     });
-<<<<<<< Updated upstream
 });
 
 
 Route::get('/seting', function () {
     return view('User.halaman.seting-akun');
-});
+})->middleware('auth');
 
 
 
 // yang faros rubah -- soale masih pusing baca codingan saugi
 Route::get('/donass/detail', function () {
     return view('User.halaman.donation-detail');
-});
+})->middleware('auth');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
     
     Route::get('/',function(){
         return view('admin.index');
-    });
+    })->name('admin');
     
     Route::resource('/artikel-admin', ArtikelAdminController::class);
     Route::resource('/donasi-admin', DonasiAdminController::class );
-=======
->>>>>>> Stashed changes
 
     Route::prefix('/admin')->group(function(){
         Route::get('/',function(){
@@ -122,13 +119,11 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Auth::routes();
-<<<<<<< Updated upstream
+Auth::routes(['verify' => true]);;
 
 Route::post('/coba', function(Request $request){
     dd($request);
 })->name('coba');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
 Auth::routes(['verify' => true]);;
->>>>>>> Stashed changes
