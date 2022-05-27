@@ -47,6 +47,15 @@
                     @csrf
                 </form>
 
+                <a href="" ><i class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="{{url('/seting')}}"><i class="fa-solid fa-gear"></i></a>
+                <a href="{{route('user.seting')}}"><i class="fa-solid fa-gear"></i></a>
+                @else
+
+                <a href="{{route('login')}}" ><i class="fa-solid fa-right-to-bracket"></i></a>
+
+                @endif
+
                 <a href="{{url('/seting')}}"><i class="fa-solid fa-gear"></i></a>
                 @else
                 
