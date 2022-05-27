@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Models\donasi;
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
+use App\Models\artikel;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class DonateController extends Controller
+class ArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class DonateController extends Controller
      */
     public function index()
     {
-        $data = donasi::get();
-        return view('User.halaman.donate', $data);
+        $data = artikel::get();
+
+        return view('User.halaman.artikel', $data);
     }
 
     /**
@@ -39,17 +40,17 @@ class DonateController extends Controller
     public function store(Request $request)
     {
         try{
-            DB::transaction(function() use($request){
-                $donate = new donasi();
-                $donate->fill($request->all());
-                $donate->is_actived = $request->has('is_active')?1:0;
-                $donate->save();
+            DB::transaction(function () use($request) {
+                $artikel = new artikel();
+                $artikel->fill($request->all());
+                $artikel->save();
             });
 
-            return redirect()->route('donate.index')->with(['success'=>'Berhasil menambahkan donasi']);
-        }catch (Exception $e){
+            return redirect()->route('artikel.index')->with(['success'=>'Berhasil menambahkan artikel']);
+        } catch(Exception $e){
             report($e->getMessage());
-            return redirect()->back()->withErrors(['error'=>'Terjadi kesalahan'])->withInput();
+
+            return redirect()->back()->withErrors(['error'=>'Terjadi error'])->withInput();
         }
     }
 
@@ -61,8 +62,9 @@ class DonateController extends Controller
      */
     public function show($id)
     {
-        $data = donasi::select('id', $id)->first();
-        return view('User.halaman.donation-detail', $data);
+        $data = artikel::select($id)->first();
+
+        return view('User.halaman.artikel-detail', $data);
     }
 
     /**
@@ -73,7 +75,8 @@ class DonateController extends Controller
      */
     public function edit($id)
     {
-        $data = donasi::select('id', $id)->first();
+        $data = artikel::select($id)->first();
+
         return view('', $data);
     }
 
@@ -88,17 +91,17 @@ class DonateController extends Controller
     {
         try{
             DB::transaction(function() use($request, $id){
-                $donate = new donasi();
-                $donate->select('id', $id);
-                $donate->fill($request->all());
-                $donate->is_actived = $request->has('is_active')?1:0;
-                $donate->save();
+                $artikel = new artikel();
+                $artikel->select('id', $id)->first();
+                $artikel->fill($request->all());
+                $artikel->save();
             });
 
-            return redirect()->route('donate.index')->with(['success'=>'Behasil memperbarui donasi']);
+            return redirect()->route('artikel.index')->with(['success'=>'Berhasil memperbarui artikel']);
         } catch (Exception $e){
             report($e->getMessage());
-            return redirect()->back()->withErrors(['error'=>'Terjadi Error'])->withInput();
+
+            return redirect()->back()->withErrors(['error'=>'Gagal memperbarui artikel']);
         }
     }
 
@@ -110,10 +113,9 @@ class DonateController extends Controller
      */
     public function destroy($id)
     {
-        $donate = new donasi();
-        $donate->select('id', $id);
-        $donate->delete();
+        $artikel = new artikel();
+        $artikel->delete();
 
-        return redirect()->route('donate.index')->with(['success'=>'Berhasil menghapus donasi']);
+        return redirect()->route('artikel.index')->with(['success'=>'Artikel berhasil dihapus']);
     }
 }
