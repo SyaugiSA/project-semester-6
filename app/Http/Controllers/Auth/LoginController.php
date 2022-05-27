@@ -60,20 +60,10 @@ class LoginController extends Controller
       if (auth()->attempt($login)) {
         //JIKA BERHASIL AKAN REDIRECT PADA HOME
         if (Auth::user()->id_hak_akses == 1) {
-
-          return redirect()->route('admin');
+            return redirect()->route('admin');
         } else if (Auth::user()->id_hak_akses == 2) {
-          return redirect()->route('user');
+            return redirect()->route('user');
         }
-
-
-          # code...
-          return redirect()->route('admin');
-        } else if (Auth::user()->id_hak_akses == 2) {
-          # code...
-          return redirect()->route('user');
-        }
-
       }
       //JIKA SALAH MAKA KEMBALI PADA HALAMAN LOGIN DAN AKAN ADA NOTIFIKASI YANG MUNCUL
       return redirect()->route('login')->with(['error' => 'Username atau Password salah!!!']);
