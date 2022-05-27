@@ -4,8 +4,6 @@ use App\Http\Controllers\Admin\ArtikelAdminController;
 use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DonateController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -62,68 +60,46 @@ Route::middleware(['auth'])->group(function(){
             Route::post('/create', [TransaksiController::class, 'store'])->name('user.transaksi.store');
         });
     });
-});
 
+    Route::prefix('/admin')->group(function () {
 
-Route::get('/seting', function () {
-    return view('User.halaman.seting-akun');
-})->middleware('auth');
-
-
-
-// yang faros rubah -- soale masih pusing baca codingan saugi
-Route::get('/donass/detail', function () {
-    return view('User.halaman.donation-detail');
-})->middleware('auth');
-
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
-    
-    Route::get('/',function(){
-        return view('admin.index');
-    })->name('admin');
-    
-    Route::resource('/artikel-admin', ArtikelAdminController::class);
-    Route::resource('/donasi-admin', DonasiAdminController::class );
-
-    Route::prefix('/admin')->group(function(){
         Route::get('/',function(){
             return view('admin.index');
         })->name('admin');
 
-        Route::prefix('/donasi')->group(function(){
-            Route::get('/', [DonasiAdminController::class, 'index'])->name('admin.donasi.index');
-            Route::get('/{id}', [DonasiAdminController::class, 'show'])->name('admin.donasi.show');
-            Route::get('/create', [DonasiAdminController::class,'create'])->name('admin.donasi.create');
-            Route::post('/create', [DonasiAdminController::class,'store'])->name('admin.donasi.store');
-            Route::get('/{id}/edit', [DonasiAdminController::class,'edit'])->name('admin.donasi.edit');
-            Route::put('/{id}/edit', [DonasiAdminController::class,'update'])->name('admin.donasi.update');
-            Route::delete('/{id}', [DonasiAdminController::class,'dstroy'])->name('admin.donasi.destroy');
-        });
+        Route::prefix('/admin')->group(function(){
+            Route::get('/',function(){
+                return view('admin.index');
+            })->name('admin');
 
-        Route::prefix('/artikel')->group(function(){
-            Route::get('/', [ArtikelAdminController::class, 'index'])->name('admin.artikel.index');
-            Route::get('/{id}', [ArtikelAdminController::class, 'show'])->name('admin.artikel.show');
-            Route::get('/create', [ArtikelAdminController::class,'create'])->name('admin.artikel.create');
-            Route::post('/create', [ArtikelAdminController::class,'store'])->name('admin.artikel.store');
-            Route::get('/{id}/edit', [ArtikelAdminController::class,'edit'])->name('admin.artikel.edit');
-            Route::put('/{id}/edit', [ArtikelAdminController::class,'update'])->name('admin.artikel.update');
-            Route::delete('/{id}', [ArtikelAdminController::class,'dstroy'])->name('admin.artikel.destroy');
-        });
+            Route::prefix('/donasi')->group(function(){
+                Route::get('/', [DonasiAdminController::class, 'index'])->name('admin.donasi.index');
+                Route::get('/{id}', [DonasiAdminController::class, 'show'])->name('admin.donasi.show');
+                Route::get('/create', [DonasiAdminController::class,'create'])->name('admin.donasi.create');
+                Route::post('/create', [DonasiAdminController::class,'store'])->name('admin.donasi.store');
+                Route::get('/{id}/edit', [DonasiAdminController::class,'edit'])->name('admin.donasi.edit');
+                Route::put('/{id}/edit', [DonasiAdminController::class,'update'])->name('admin.donasi.update');
+                Route::delete('/{id}', [DonasiAdminController::class,'dstroy'])->name('admin.donasi.destroy');
+            });
 
-        Route::prefix('/transaksi')->group(function(){
-            Route::get('/', [TransaksiController::class, 'index'])->name('admin.transaksi.index');
-            Route::get('/{id}', [TransaksiController::class, 'show'])->name('admin.transaksi.show');
-            Route::put('/{id}/edit', [TransaksiController::class, 'update'])->name('admin.transaksi.update');
+            Route::prefix('/artikel')->group(function(){
+                Route::get('/', [ArtikelAdminController::class, 'index'])->name('admin.artikel.index');
+                Route::get('/{id}', [ArtikelAdminController::class, 'show'])->name('admin.artikel.show');
+                Route::get('/create', [ArtikelAdminController::class,'create'])->name('admin.artikel.create');
+                Route::post('/create', [ArtikelAdminController::class,'store'])->name('admin.artikel.store');
+                Route::get('/{id}/edit', [ArtikelAdminController::class,'edit'])->name('admin.artikel.edit');
+                Route::put('/{id}/edit', [ArtikelAdminController::class,'update'])->name('admin.artikel.update');
+                Route::delete('/{id}', [ArtikelAdminController::class,'dstroy'])->name('admin.artikel.destroy');
+            });
+
+            Route::prefix('/transaksi')->group(function(){
+                Route::get('/', [TransaksiController::class, 'index'])->name('admin.transaksi.index');
+                Route::get('/{id}', [TransaksiController::class, 'show'])->name('admin.transaksi.show');
+                Route::put('/{id}/edit', [TransaksiController::class, 'update'])->name('admin.transaksi.update');
+            });
         });
     });
 });
 
 Auth::routes();
-Auth::routes(['verify' => true]);;
-
-Route::post('/coba', function(Request $request){
-    dd($request);
-})->name('coba');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes(['verify' => true]);;
+Auth::routes(['verify' => true]);
