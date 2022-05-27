@@ -410,5 +410,21 @@
     {{-- <script src="{{asset('js/FeMasjid/prayTime.js')}}"></script> --}}
     <script src="{{ asset('js/FeLaznas/api/PrayTime.js') }}"></script>
 
+    <script>
+
+        
+      const progress = document.querySelector('.progress-donation-done');
+      let text = progress.getAttribute('data-done');
+      document.getElementById("text").innerHTML = text + '%';
+
+      setTimeout(() => {
+          
+          progress.style.opacity = 1;
+          progress.style.width = progress.getAttribute('data-done') + '%' ;
+      }, 500);
+
+
+
+  </script>
    
 @endsection
