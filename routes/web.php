@@ -55,6 +55,26 @@ Route::middleware(['auth'])->group(function(){
     });
 });
 
+Route::get('/seting', function () {
+    return view('User.halaman.seting-akun');
+})->middleware('auth');
+
+
+
+// yang faros rubah -- soale masih pusing baca codingan saugi
+Route::get('/donass/detail', function () {
+    return view('User.halaman.donation-detail');
+})->middleware('auth');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {   
+    Route::get('/',function(){
+        return view('admin.index');
+    })->name('admin');
+    
+    Route::resource('/artikel-admin', ArtikelAdminController::class);
+    Route::resource('/donasi-admin', DonasiAdminController::class );
+
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
     Route::get('/',function(){
         return view('admin.index');

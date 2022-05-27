@@ -30,11 +30,11 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
-                        <form method="POST" action="{{ route('login') }}" class="register-form" id="login-form">
+                        <form method="POST" action="{{ route('login') }}" class="register-form" id="login-form" >
                             @csrf
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="email" class="@error('email') is-invalid @enderror" name="email" id="your_name" placeholder="Email"/>
+                                <input type="email" class="@error('email') is-invalid @enderror" name="email" id="email" placeholder="Email"/>
                                 @error('email')
                                 <span class="invalid-feedback" style="color: red" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -49,12 +49,13 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+                            </div>
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                                <input type="submit" name="signin" id="signin" class="form-submit" onclick="lsRememberMe()" value="Log in"/>
                             </div>
                         </form>
                     </div>
@@ -66,4 +67,31 @@
 
 
 </body>
+<script>
+
+const rmCheck = document.getElementById("remember-me"),
+    emailInput = document.getElementById("email");
+
+if (localStorage.checkbox && localStorage.checkbox !== "") {
+  rmCheck.setAttribute("checked", "checked");
+  emailInput.value = localStorage.username;
+} else {
+  rmCheck.removeAttribute("checked");
+  emailInput.value = "";
+}
+
+function lsRememberMe() {
+  if (rmCheck.checked && emailInput.value !== "") {
+    localStorage.username = emailInput.value;
+    localStorage.checkbox = rmCheck.value;
+  } else {
+    localStorage.username = "";
+    localStorage.checkbox = "";
+  }
+}
+   
+    
+
+    
+</script>
 </html>

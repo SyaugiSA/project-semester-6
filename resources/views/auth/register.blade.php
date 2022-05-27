@@ -58,7 +58,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                                <label for="agree-term" id="label-agree" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" id="label-term" class="term-service">Terms of service</a></label>
                             </div>
                             <div class="form-group form-button">
                                 {{-- <input type="submit" name="signup" id="signup" class="form-submit" value="Register"  {{ __('Register') }}/> --}}
@@ -82,4 +82,18 @@
 
     
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+<script>
+    document.getElementById('register-form').addEventListener('submit', function(event){
+    if(document.getElementById('agree-term').checked == false){
+        event.preventDefault();
+        alert("By signing up, you must accept our terms and conditions!");
+        var element = document.getElementById("label-agree");
+            element.style.color = 'red';
+
+        var element2 = document.getElementById('label-term');
+            element2.style.color ='red';
+        return false;
+    }
+});
+</script>
 </html>
