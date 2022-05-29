@@ -24,11 +24,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Donasi Laznas</h1>
+                    <h1>Transaksi</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Donasi Laznas</a></li>
+                        <li class="breadcrumb-item"><a href="#">Transaksi</a></li>
                     </ol>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <div id="fails_message"></div>
                     <div class="card">
                         <div class="card-header bg-primary">
-                            <h3 class="card-title ">Donasi Laznas</h3>
+                            <h3 class="card-title ">Data Transaksi</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -57,8 +57,8 @@
 
                             <div class="mb-3">
 
-                                <a href="{{ route('donasi-admin.create') }}" class="btn btn-primary my-3"><i
-                                        class="fas fa-info"></i> Tambah Data Donasi</a>
+                                <a href="{{ route('event.create') }}" class="btn btn-primary my-3"><i
+                                        class="fas fa-info"></i> Tambah Data Transaksi</a>
 
 
                             </div>
@@ -70,9 +70,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Judul</th>
-                                        <th>Mulai</th>
-                                        <th>Berakhir</th>
-                                        <th>Jumlah</th>
+                                        <th>Tanggal</th>
                                         <th>Deskripsi</th>
                                         <th>Foto</th>
                                         <th>Aksi</th>
@@ -83,17 +81,18 @@
 
 
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{$d->judul}}</td>
-                                            <td>{{$d->added_at}}</td>
-                                            <td>{{$d->ended_at}}</td>
-                                            <td>{{$d->jumlah}}</td>
+                                            <td>@datetime($d->tanggal)</td>
                                             <td>{{$d->deskripsi}}</td>
-                                            <td> <img src="{{'/storage/'.$d->gambar}}" alt="" width="175px" height="150px"></td>
-                                        
                                             <td>
-                                                <form action="{{route('donasi-admin.destroy',$d->id)}}" method="post">
-                                                    <a href="{{route('donasi-admin.edit', $d->id)}}"
+                                                @foreach ($d->photo as $photo )
+                                                <img src="{{'/storage/'.$photo->photo_event_path}}" alt="" width="175px" height="150px">
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <form action="{{route('event.destroy', $d->id)}}" method="post">
+                                                    <a href="{{ route('event.edit', $d->id)}}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fas fa-user-edit"></i> Edit
                                                     </a>
@@ -112,7 +111,6 @@
                                         <th>No</th>
                                         <th>Judul</th>
                                         <th>Tanggal</th>
-                                        <th>Jumlah Dana</th>
                                         <th>Deskripsi</th>
                                         <th>Foto</th>
                                         <th>Aksi</th>

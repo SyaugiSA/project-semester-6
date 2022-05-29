@@ -14,7 +14,7 @@ class ProfileAdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.Profile.profile_setting');
     }
 
     /**

@@ -71,7 +71,7 @@ $(document).ready(function(){
     
     $(".submit").click(function(){
         return false;
-    })
+    });
 
     $("div.myDiv").hide();
     $('#selectBank').on('change', function(){

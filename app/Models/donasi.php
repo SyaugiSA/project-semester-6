@@ -10,13 +10,12 @@ class donasi extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillavle = [
+    protected $fillable = [
         'judul',
         'deskripsi',
         'jumlah',
         'gambar',
-        'gambar',
-        'started_at',
+        'added_at',
         'ended_at',
         'is_actived'
     ];

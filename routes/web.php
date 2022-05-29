@@ -35,6 +35,8 @@ Route::get('/about', function () {
 })->name('about-us');
 
 Route::get('/donate', [DonateController::class, 'index'])->name('donate.index');
+Route::get('/donate/detail/{id}', [DonateController::class, 'show'])->middleware('auth');
+Route::post('/donate/detail', [DonateController::class, 'store'])->middleware('auth')->name('donate.store');
 
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
@@ -46,9 +48,9 @@ Route::get('/seting', function () {
 })->middleware('auth');
 
 
-Route::get('/donass/detail', function () {
-    return view('User.halaman.donation-detail');
-})->middleware('auth');
+// Route::get('/donass/detail', function () {
+//     return view('User.halaman.donation-detail');
+// })->middleware('auth');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
@@ -57,9 +59,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     })->name('admin');
 
 
+
     Route::resource('/artikel-admin', ArtikelAdminController::class);
     Route::resource('/donasi-admin', DonasiAdminController::class);
-    Route::resource('/profile', ProfileAdminController::class);
+    Route::resource('/profile-setting', ProfileAdminController::class);
 
     Route::prefix('/transaksi')->group(function () {
         Route::get('/', [TransaksiController::class, 'index'])->name('admin.transaksi.index');

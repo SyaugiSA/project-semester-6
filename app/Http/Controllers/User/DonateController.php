@@ -7,6 +7,10 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\transaksi;
+use App\Models\User;
+use Illuminate\Support\Str;
+
 class DonateController extends Controller
 {
     /**
@@ -16,8 +20,8 @@ class DonateController extends Controller
      */
     public function index()
     {
-        $data = donasi::get();
-        return view('User.halaman.donate', $data);
+        $data = donasi::all();
+        return view('User.halaman.donate', compact('data'));
     }
 
     /**
@@ -38,19 +42,35 @@ class DonateController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            DB::transaction(function() use($request){
-                $donate = new donasi();
-                $donate->fill($request->all());
-                $donate->is_actived = $request->has('is_active')?1:0;
-                $donate->save();
-            });
 
-            return redirect()->route('donate.index')->with(['success'=>'Berhasil menambahkan donasi']);
-        }catch (Exception $e){
-            report($e->getMessage());
-            return redirect()->back()->withErrors(['error'=>'Terjadi kesalahan'])->withInput();
+        
+        // menghilangkan string selain angka
+        $angka = $request->jumlah;
+        $result = preg_replace("/[^0-9]/", "", $angka);
+
+        
+        if ($request->pic != null) {
+            $photo = $request->file('pic');
+            $ext = $photo->extension();
+            // $oldphoto = auth()->user()->profile_photo_path;
+            // dd($oldphoto);
+            // Storage::disk('local')->delete('public/profile-photo/'.basename($oldphoto));
+            
+            $length = 25 ;
+            $name = Str::random($length);
+            $newFileName = auth()->user()->id . '-'. $name .'.' .$ext;
+            // $this->validate($request, ['image' => 'required|file|max:5000']);
+            $path = $photo->storeAs('trans-photo', $newFileName, 'public');
+            $transaksi = transaksi::create([
+                'donasi_id' => $request->donate,
+                'jumlah' => $result,
+                'user_id' => auth()->user()->id,
+                'bukti' => $path,
+                'is_verified' => 0,
+            ]);
         }
+        return $transaksi;
+
     }
 
     /**
@@ -61,8 +81,11 @@ class DonateController extends Controller
      */
     public function show($id)
     {
-        $data = donasi::select('id', $id)->first();
-        return view('User.halaman.donation-detail', $data);
+        $data = donasi::find($id)->first();
+        $uID = auth()->user()->id;
+        $user = user::find($uID);
+        // dd($user);
+        return view('User.halaman.donation-detail', compact('data','user'));
     }
 
     /**
