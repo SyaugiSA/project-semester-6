@@ -42,7 +42,7 @@
 
             <form id="msform" action="{{ route('donate.store') }}" method="POST" enctype="multipart/form-data">
                 <!-- progressbar -->
-                {{ csrf_field() }}
+                {{-- {{ csrf_field() }} --}}
                 @csrf
                 <input type="hidden" id="donate" name="donate" value="{{ $data->id }}">
                 <ul id="progressbar">
@@ -122,7 +122,7 @@
                                 <h2 class="steps">Step 2 - 3</h2>
                             </div>
                         </div>
-                        <label class="fieldlabels">UUpload Bukti Transfer</label>
+                        <label class="fieldlabels">Upload Bukti Transfer</label>
                         <input type="file" id="image" name="pic" accept="image/*" required>
 
                     </div>
@@ -140,12 +140,12 @@
                             </div>
                         </div>
                         <br><br>
-                        <button type="submit">Tes</button>
+                        {{-- <button type="submit">Tes</button> --}}
                         <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2>
                         <br>
                         <div class="row justify-content-center">
                             <div class="col-3">
-                                <img src="{{ asset('image/berhasil.png') }}" class="fit-image">
+                                <img src="{{ asset('image/berhasil.png') }}" id="foto-bhs" class="fit-image">
                             </div>
                         </div>
                         <br><br>
@@ -205,34 +205,20 @@
         });
     </script>
 
-    {{-- <script>
-        $('body').on('click', '#btn-save', function(event) {
-            var id = $("#id").val();
-            var title = $("#title").val();
-            var code = $("#code").val();
-            var author = $("#author").val();
-            $("#btn-save").html('Please Wait...');
-            $("#btn-save").attr("disabled", true);
 
-            // ajax
-            $.ajax({
-                type: "POST",
-                url: "{{ url('add-update-book') }}",
-                data: {
-                    id: id,
-                    title: title,
-                    code: code,
-                    author: author,
-                },
-                dataType: 'json',
-                success: function(res) {
-                    window.location.reload();
-                    $("#btn-save").html('Submit');
-                    $("#btn-save").attr("disabled", false);
-                }
-            });
-        });
-    </script> --}}
+
+    <script>
+        $('#btn-submit').attr('disabled', true);
+        $('#image').on('change', function(){
+            if($('#image').val() != ''){
+                $('#btn-submit').attr('disabled', false);
+            }else{
+                $('#btn-submit').attr('disabled', true);
+            }
+     });
+         
+    </script>
+
 
 
     <script type="text/javascript">
@@ -246,32 +232,41 @@
 
         });
         $("#btn-submit").click(function(e) {
-            e.preventDefault();
-            var jumlah = $("#jumlah_donasi").val();
-            var pic = $("#image").val();
-            var donate = $("#donate").val();
-            let formData = new FormData({
-                    jumlah: jumlah,
-                    pic : pic,
-                    donate: donate,
+
+
+
+            if ($('#jumlah_donasi').val() != '' && $('#donate').val() != '') {
+
+
+                e.preventDefault();
+                var jumlah = $("#jumlah_donasi").val();
+                var pic = $("#image")[0];
+                var donate = $("#donate").val();
+                let formData = new FormData();
+                formData.append('_token', '{{ csrf_token() }}');
+                formData.append('jumlah', jumlah);
+                formData.append('pic', pic.files[0]);
+                formData.append('donate', donate);
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('donate.store') }}",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function(data) {
+                        console.log(data);
+                        // alert(data.success);
+
+                    },
+                    error: function(e) {
+                        console.log(e.responseJSON.message);
+                    }
+
                 });
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('donate.store') }}",
-                contentType: false,
-                processData: false,
-                data:formData,
 
 
-                success: function(data) {
-                    console.log(data);
-                    alert(data.success);
-
-                }
-
-            });
-
-
+            }
 
         });
     </script>
