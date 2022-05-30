@@ -15,7 +15,8 @@
                         <p>Laznas</p>
         
                     <h2 class="title">{{$d->judul}}</h2>
-                    <p> Rp. 500.000 Terkumpul</p>
+                    <p> Dibutuhkan  @currency($d->jumlah)</p>
+                    <p> Dana Masuk Rp. 500.000 {{$pemasukan}}</p>
                     <div class="progress-donation" >
                         <div class="progress-donation-done" data-done="90" id="text"></div>
                     </div>

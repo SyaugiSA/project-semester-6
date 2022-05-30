@@ -20,7 +20,24 @@ class DonateController extends Controller
      */
     public function index()
     {
-        $data = donasi::all();
+
+        // $pemasukan = transaksi::groupBy('donasi_id')->get('jumlah');
+
+
+        // $data = donasi::get();
+        //      
+
+        // $pemasukan = DB::table('donasis')->rightJoin('transaksis', 'donasis.id', '=', 'transaksis.donasi_id')
+        //     ->groupBy('donasi_id')->selectRaw('sum(transaksis.jumlah) as sum, donasi_id')->pluck('sum', 'donasi_id');
+        // $pemasukan = transaksi::groupBy('donasi_id')->selectRaw('sum(jumlah) as sum, donasi_id')->pluck('sum','donasi_id');
+        // dd($pemasukan);
+
+       $data = donasi::join('transaksis', 'transaksis.donasi_id', '=', 'donasis.id')
+            // ->where('projects.status', '=', 'ongoing')
+            ->groupBy('donasis.id')
+            ->get(['donasis.id', DB::raw('sum(transaksis.jumlah) as value')])
+            ->sum('value');
+
         return view('User.halaman.donate', compact('data'));
     }
 
@@ -43,22 +60,22 @@ class DonateController extends Controller
     public function store(Request $request)
     {
 
-        
+
         // menghilangkan string selain angka
         $angka = $request->jumlah;
         $result = preg_replace("/[^0-9]/", "", $angka);
 
-        
+
         if ($request->pic != null) {
             $photo = $request->file('pic');
             $ext = $photo->extension();
             // $oldphoto = auth()->user()->profile_photo_path;
             // dd($oldphoto);
             // Storage::disk('local')->delete('public/profile-photo/'.basename($oldphoto));
-            
-            $length = 25 ;
+
+            $length = 25;
             $name = Str::random($length);
-            $newFileName = auth()->user()->id . '-'. $name .'.' .$ext;
+            $newFileName = auth()->user()->id . '-' . $name . '.' . $ext;
             // $this->validate($request, ['image' => 'required|file|max:5000']);
             $path = $photo->storeAs('trans-photo', $newFileName, 'public');
             $transaksi = transaksi::create([
@@ -70,7 +87,6 @@ class DonateController extends Controller
             ]);
         }
         return $transaksi;
-
     }
 
     /**
@@ -81,11 +97,11 @@ class DonateController extends Controller
      */
     public function show($id)
     {
-        $data = donasi::find($id)->first();
+        $data = donasi::find($id);
         $uID = auth()->user()->id;
         $user = user::find($uID);
         // dd($user);
-        return view('User.halaman.donation-detail', compact('data','user'));
+        return view('User.halaman.donation-detail', compact('data', 'user'));
     }
 
     /**
@@ -109,19 +125,19 @@ class DonateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-            DB::transaction(function() use($request, $id){
+        try {
+            DB::transaction(function () use ($request, $id) {
                 $donate = new donasi();
                 $donate->select('id', $id);
                 $donate->fill($request->all());
-                $donate->is_actived = $request->has('is_active')?1:0;
+                $donate->is_actived = $request->has('is_active') ? 1 : 0;
                 $donate->save();
             });
 
-            return redirect()->route('donate.index')->with(['success'=>'Behasil memperbarui donasi']);
-        } catch (Exception $e){
+            return redirect()->route('donate.index')->with(['success' => 'Behasil memperbarui donasi']);
+        } catch (Exception $e) {
             report($e->getMessage());
-            return redirect()->back()->withErrors(['error'=>'Terjadi Error'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'Terjadi Error'])->withInput();
         }
     }
 
@@ -137,6 +153,6 @@ class DonateController extends Controller
         $donate->select('id', $id);
         $donate->delete();
 
-        return redirect()->route('donate.index')->with(['success'=>'Berhasil menghapus donasi']);
+        return redirect()->route('donate.index')->with(['success' => 'Berhasil menghapus donasi']);
     }
 }

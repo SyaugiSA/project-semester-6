@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class donasi extends Model
 {
     use HasFactory, SoftDeletes;
-
     protected $fillable = [
         'judul',
         'deskripsi',

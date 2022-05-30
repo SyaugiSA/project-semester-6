@@ -11,15 +11,17 @@
 
 @section('content')
     <section>
-
+        
+            
+       
         <div class="container">
-
+            
             <div class="foto-donasi">
 
                 <img src="{{ '/storage/' . $data->gambar }}" alt="">
             </div>
             <h2 class="title-detail-donation">{{ $data->judul }} </h2>
-            {{-- <p>Desa kunir, Kec.kaliwates, kab jember</p> --}}
+            <p>Dibutuhkan Rp. 5.000.000</p>
 
             <p> Rp. 500.000 Terkumpul</p>
             <div class="progress-donation-detail">
@@ -30,7 +32,7 @@
 
 
         </div>
-
+        
     </section>
 
 
