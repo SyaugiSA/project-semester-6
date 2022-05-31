@@ -17,6 +17,8 @@ class CreateArtikelsTable extends Migration
             $table->id();
             $table->string('judul');
             $table->string('deskripsi');
+            $table->date('tanggal');
+            $table->string('gambar')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

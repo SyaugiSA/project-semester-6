@@ -80,33 +80,35 @@
                                     {{-- @foreach ($data as $d) --}}
 
 
-                                        <tr>
-                                            <td>nomor</td>
-                                            <td>JUDULLL</td>
-                                            <td>Tanggal</td>
-                                            <td>Deskripsi</td>
-                                            <td>
-                                                {{-- @foreach ($d->photo as $photo )
-                                                <img src="{{'/storage/'.$photo->photo_event_path}}" alt="" width="175px" height="150px">
-                                                @endforeach --}}
+                                    @foreach ($data as $val)
+                                    <tr>
+                                        <td>nomor</td>
+                                        <td>{{$val->judul}}</td>
+                                        <td>{{$val->created_at}}</td>
+                                        <td>{{$val->deskripsi}}</td>
+                                        <td>
+                                            {{-- @foreach ($d->photo as $photo )
+                                            <img src="{{'/storage/'.$photo->photo_event_path}}" alt="" width="175px" height="150px">
+                                            @endforeach --}}
 
-                                                FOTO
-                                            </td>
-                                            <td>
-                                                <form action="#" method="post">
-                                                    <a href=""
-                                                        class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-user-edit"></i> Edit
-                                                    </a>
-                                                    @csrf
-                                                    @method('delete')
+                                            FOTO
+                                        </td>
+                                        <td>
+                                            <form action="{{route('artikel-admin.destroy', $val->id)}}" method="post">
+                                                <a href="{{route('artikel-admin.edit', $val->id)}}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-user-edit"></i> Edit
+                                                </a>
+                                                @csrf
+                                                @method('delete')
 
-                                                    <button type="submit" class="btn btn-danger btn-sm" id="Hapus"><i
-                                                            class="far fa-trash-alt"></i>Hapus</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    {{-- @endforeach --}}
+                                                <button type="submit" class="btn btn-danger btn-sm" id="Hapus"><i
+                                                        class="far fa-trash-alt"></i>Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
                                 </tbody>
                                 <tfoot>
                                     <tr>

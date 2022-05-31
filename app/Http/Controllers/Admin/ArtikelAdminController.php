@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\artikel;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ArtikelAdminController extends Controller
 {
@@ -18,7 +21,7 @@ class ArtikelAdminController extends Controller
     public function index()
     {
         $data = artikel::get();
-        return view('admin.Artikel.Listartikel', $data);
+        return view('admin.Artikel.Listartikel', compact('data'));
     }
 
     /**
@@ -39,19 +42,19 @@ class ArtikelAdminController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            DB::transaction(function () use($request) {
-                $artikel = new artikel();
-                $artikel->fill($request->all());
-                $artikel->save();
-            });
+        $image = $request->file('image');
+        $name = Str::random(20) . '.' . $image->extension();
+        $path = $image->storeAs('foto-artikel', $name, 'public');
 
-            return redirect()->route('artikel.index')->with(['success'=>'Berhasil menambahkan artikel']);
-        } catch(Exception $e){
-            report($e->getMessage());
+        $artikel = artikel::create([
+            "judul"=>$request->judul,
+            "deskripsi"=>$request->deskripsi,
+            "tanggal"=>$request->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d'),
+            "gambar" => $path
+        ]);
+        $artikel->save();
 
-            return redirect()->back()->withErrors(['error'=>'Terjadi error'])->withInput();
-        }
+        return redirect()->route('artikel-admin.index')->with(['success'=>'Berhasil menambahkan artikel']);
     }
 
     /**
@@ -73,9 +76,9 @@ class ArtikelAdminController extends Controller
      */
     public function edit($id)
     {
-        $data = artikel::select($id)->first();
+        $data = artikel::find($id)->first();
 
-        return view('admin.Artikel.edit_artikel', $data);
+        return view('admin.Artikel.edit_artikel', compact('data'));
     }
 
     /**
@@ -87,20 +90,29 @@ class ArtikelAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-            DB::transaction(function() use($request, $id){
-                $artikel = new artikel();
-                $artikel->select('id', $id)->first();
-                $artikel->fill($request->all());
-                $artikel->save();
-            });
+        $image = $request->image;
+        $data = artikel::find($id);
 
-            return redirect()->route('artikel.index')->with(['success'=>'Berhasil memperbarui artikel']);
-        } catch (Exception $e){
-            report($e->getMessage());
+        if($image != null){
+            $photo = $request->file('image');
+            $name = Str::random(20);
+            $newFile = $name . '.'. $photo->extension();
+            $path = $photo->storeAs('foto-artikel', $newFile, 'oublic');
 
-            return redirect()->back()->withErrors(['error'=>'Gagal memperbarui artikel']);
+            Storage::disk('local')->delete('public/foto-artikel', basename($data['gambar']));
+
+            $data->judul = $request->judul;
+            $data->deskripsi = $request->deskripsi;
+            $data->tanggal = $request->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
+            $data->gambar = $path;
+        }else{
+            $data->judul = $request->judul;
+            $data->deskripsi = $request->deskripsi;
+            $data->tanggal = $request->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
         }
+        $data->update();
+
+        return redirect()->route('artikel-admin.index')->with(['success'=>'Berhasil memperbarui artikel']);
     }
 
     /**
@@ -111,9 +123,10 @@ class ArtikelAdminController extends Controller
      */
     public function destroy($id)
     {
-        $artikel = new artikel();
-        $artikel->delete();
+        $data = artikel::find($id);
+        Storage::disk('local')->delete('publi/foto-artikel', basename($data['gambar']));
+        $data->delete();
 
-        return redirect()->route('artikel.index')->with(['success'=>'Artikel berhasil dihapus']);
+        return redirect()->route('artikel-admin.index')->with(['success'=>'Artikel berhasil dihapus']);
     }
 }

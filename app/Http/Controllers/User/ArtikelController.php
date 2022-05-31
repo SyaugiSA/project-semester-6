@@ -13,9 +13,9 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        $data = artikel::get();
+        $data = artikel::select()->get();
 
-        return view('User.halaman.artikel', $data);
+        return view('User.halaman.artikel', compact('data'));
     }
 
     /**
@@ -26,8 +26,8 @@ class ArtikelController extends Controller
      */
     public function show($id)
     {
-        $data = artikel::select($id)->first();
+        $data = artikel::find($id)->first();
 
-        return view('User.halaman.artikel-detail', $data);
+        return view('User.halaman.artikel-detail', compact('data'));
     }
 }
