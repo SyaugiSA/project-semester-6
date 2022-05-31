@@ -18,7 +18,14 @@
                     <p> Dibutuhkan  @currency($d->jumlah)</p>
                     <p> Dana Masuk @currency($d->pemasukan)</p>
                     <div class="progress-donation" >
-                        <div class="progress-donation-done" data-done="90" id="text"></div>
+                        <div class="progress-donation-done" data-done="@php
+                            $persen = ((int)$d->pemasukan / (int)$d->jumlah)*100;
+                            if($persen > 100){
+                                echo 100 ;
+                            }else {
+                                echo $persen ;
+                            }
+                        @endphp" id="text"></div>
                     </div>
                     <a href="{{url('/donate/detail',$d->id)}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
 
@@ -36,7 +43,7 @@
         
         const progress = document.querySelector('.progress-donation-done');
         let text = progress.getAttribute('data-done');
-        document.getElementById("text").innerHTML = text + '%';
+        document.getElementById("text").innerHTML = text + '%'; 
 
         setTimeout(() => {
             

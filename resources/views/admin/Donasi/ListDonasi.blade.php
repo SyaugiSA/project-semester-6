@@ -12,14 +12,11 @@
         href="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.css') }}">
-
-
 @endsection
 
 
 
 @section('content')
-
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -80,29 +77,44 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $d)
-
-
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$d->judul}}</td>
-                                            <td>{{$d->added_at}}</td>
-                                            <td>{{$d->ended_at}}</td>
-                                            <td>{{$d->jumlah}}</td>
-                                            <td>{{$d->deskripsi}}</td>
-                                            <td> <img src="{{'/storage/'.$d->gambar}}" alt="" width="175px" height="150px"></td>
-                                        
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $d->judul }}</td>
+                                            <td>{{ $d->added_at }}</td>
+                                            <td>{{ $d->ended_at }}</td>
+                                            <td>{{ $d->jumlah }}</td>
+                                            <td>{{ $d->deskripsi }}</td>
+                                            <td> <img src="{{ '/storage/' . $d->gambar }}" alt="" width="175px"
+                                                    height="150px"></td>
+
                                             <td>
-                                                <form action="{{route('donasi-admin.destroy',$d->id)}}" method="post">
-                                                    <a href="{{route('donasi-admin.edit', $d->id)}}"
+                                                <form action="{{ route('donasi-admin.destroy', $d->id) }}" method="post">
+                                                    <a href="{{ route('donasi-admin.edit', $d->id) }}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fas fa-user-edit"></i> Edit
                                                     </a>
                                                     @csrf
                                                     @method('delete')
-
+                                                        
                                                     <button type="submit" class="btn btn-danger btn-sm" id="Hapus"><i
                                                             class="far fa-trash-alt"></i>Hapus</button>
                                                 </form>
+
+                                                <form action="{{ $d->is_actived == 1 ? route('donasi.nonactive',$d->id) : route('donasi.active',$d->id)  }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    @if ($d->is_actived == 1)
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Pakah Anda Yakin Ingin Menonaktifkan Data Ini?')">
+                                                        <i class="fa fa-exclamation"></i></button>
+                                                    @else
+                                                    <button type="submit" class="btn btn-primary"
+                                                        onclick="return confirm('Pakah Anda Yakin Ingin Mengaktifkan Data Ini?')" >
+                                                        <i class="fa fa-check"></i></button>
+                                                    @endif
+                                                </form>
+                                             
                                             </td>
                                         </tr>
                                     @endforeach
@@ -132,17 +144,6 @@
         {{-- End Table --}}
     </section>
     <!-- /.content -->
-
-
-
-
-
-
-
-
-
-
-
 @endsection
 
 @section('script')
@@ -180,10 +181,4 @@
             });
         });
     </script>
-
-
-
-
-
-
 @endsection

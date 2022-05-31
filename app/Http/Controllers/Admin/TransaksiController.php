@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        // dd('coba');
+        return view('admin.Transaksi.ListTrans');
     }
 
     /**

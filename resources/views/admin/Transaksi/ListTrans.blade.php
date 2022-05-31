@@ -57,7 +57,7 @@
 
                             <div class="mb-3">
 
-                                <a href="{{ route('event.create') }}" class="btn btn-primary my-3"><i
+                                <a href="#" class="btn btn-primary my-3"><i
                                         class="fas fa-info"></i> Tambah Data Transaksi</a>
 
 
@@ -70,29 +70,29 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Deskripsi</th>
+                                        <th>Nama</th>
+                                        <th>Jumlah</th>
                                         <th>Foto</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $d)
+                                  
 
 
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{$d->judul}}</td>
-                                            <td>@datetime($d->tanggal)</td>
-                                            <td>{{$d->deskripsi}}</td>
+                                            <td>1</td>
+                                            <td>judul</td>
+                                            <td>Donatur</td>
+                                            <td>jumlah donasi</td>
                                             <td>
-                                                @foreach ($d->photo as $photo )
-                                                <img src="{{'/storage/'.$photo->photo_event_path}}" alt="" width="175px" height="150px">
-                                                @endforeach
+                                               Foto donasi
+                                                {{-- <img src="{{'/storage/'.$photo->photo_event_path}}" alt="" width="175px" height="150px"> --}}
+                                               
                                             </td>
                                             <td>
-                                                <form action="{{route('event.destroy', $d->id)}}" method="post">
-                                                    <a href="{{ route('event.edit', $d->id)}}"
+                                                <form action="" method="post">
+                                                    <a href=""
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fas fa-user-edit"></i> Edit
                                                     </a>
@@ -104,7 +104,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+
                                 </tbody>
                                 <tfoot>
                                     <tr>

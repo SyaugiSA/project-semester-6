@@ -69,22 +69,15 @@
 
 
                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                        <i class="fas fa-users"></i>
+                     <a href="{{route('trans.index')}}" class="nav-link">
+                        <i class="fas fa-money-bill-alt"></i>
                          <p>
-                             Laporan Artikel
+                             Transaksi Donasi
                          </p>
                      </a>
                  </li>
 
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
-                        <i class="fas fa-users"></i>
-                         <p>
-                             Laporan Donasi
-                         </p>
-                     </a>
-                 </li>
+               
 
 
 

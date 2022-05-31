@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AprroveController;
 use App\Http\Controllers\Admin\ArtikelAdminController;
 use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\User\ArtikelController;
 use App\Http\Controllers\User\DonateController;
 use App\Http\Controllers\User\HomeController;
-use App\Http\Controllers\User\TransaksiController;
+use App\Http\Controllers\Admin\TransaksiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -60,17 +61,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         return view('admin.index');
     })->name('admin');
 
+    Route::put('donasi/nonactive/{donasi}',[AprroveController::class,'nonactive'])->name('donasi.nonactive');
+    Route::put('donasi/active/{donasi}', [AprroveController::class,'active'])->name('donasi.active');
+
+    Route::get('transaksi',[TransaksiController::class,'index'])->name('trans.index');
 
 
     Route::resource('/artikel-admin', ArtikelAdminController::class);
     Route::resource('/donasi-admin', DonasiAdminController::class);
     Route::resource('/profile-setting', ProfileAdminController::class);
 
-    Route::prefix('/transaksi')->group(function () {
-        Route::get('/', [TransaksiController::class, 'index'])->name('admin.transaksi.index');
-        Route::get('/{id}', [TransaksiController::class, 'show'])->name('admin.transaksi.show');
-        Route::put('/{id}/edit', [TransaksiController::class, 'update'])->name('admin.transaksi.update');
-    });
+    // Route::prefix('/transaksi')->group(function () {
+    //     Route::get('/', [TransaksiController::class, 'index'])->name('admin.transaksi.index');
+    //     Route::get('/{id}', [TransaksiController::class, 'show'])->name('admin.transaksi.show');
+    //     Route::put('/{id}/edit', [TransaksiController::class, 'update'])->name('admin.transaksi.update');
+    // });
 });
 
 Auth::routes();

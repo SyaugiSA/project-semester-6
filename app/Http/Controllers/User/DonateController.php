@@ -43,17 +43,27 @@ class DonateController extends Controller
 
 
 
-       $data = donasi::leftJoin('transaksis', 'transaksis.donasi_id', '=', 'donasis.id')
-    //    ->get();
-            // ->where('transaksis.donasi_id' == null)
+    //    $data = donasi::leftJoin('transaksis', 'transaksis.donasi_id', '=', 'donasis.id')
+    //         ->groupBy('donasis.id')
+    //         // ->where('transaksis.is_verified', '=' ,1)
+    //         ->get([
+    //             'donasis.gambar',
+    //             'donasis.id',
+    //             'donasis.judul',
+    //             'donasis.jumlah',
+    //             DB::raw('(sum(transaksis.jumlah) where transaksis.is_verified=1) as pemasukan')]);
+        
+        $data = donasi::select(
+            'donasis.gambar',
+            'donasis.id',
+            'donasis.judul',
+            'donasis.jumlah',
             
-            ->groupBy('donasis.id')
-            ->get(['donasis.gambar','donasis.id', 'donasis.judul', 'donasis.jumlah', DB::raw('sum(transaksis.jumlah) as pemasukan')]);
-            // ->sum('value');
-     
-            // dd($data);
-        // $data = donasi::get();
-
+            DB::raw("(SELECT sum(transaksis.jumlah) from transaksis 
+                where transaksis.is_verified=1 and transaksis.donasi_id = donasis.id) as pemasukan")
+                
+        )->where('is_actived','=', 1)->get();
+        
         return view('User.halaman.donate', compact('data'));
     }
 
