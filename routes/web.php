@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DonasiAdminController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\User\ArtikelController;
 use App\Http\Controllers\User\DonateController;
+use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\TransaksiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,11 +25,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('/', [HomeController::class, 'index'])->name('user');
 
 
-Route::get('/', function () {
-    return view('User.partial.home');
-})->name('user');
+// Route::get('/', function () {
+//     return view('User.partial.home');
+// })->name('user');
 
 Route::get('/about', function () {
     return view('User.About Us.about');

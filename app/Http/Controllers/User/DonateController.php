@@ -32,11 +32,27 @@ class DonateController extends Controller
         // $pemasukan = transaksi::groupBy('donasi_id')->selectRaw('sum(jumlah) as sum, donasi_id')->pluck('sum','donasi_id');
         // dd($pemasukan);
 
-       $data = donasi::join('transaksis', 'transaksis.donasi_id', '=', 'donasis.id')
-            // ->where('projects.status', '=', 'ongoing')
+        // $answers = DB::table('donasis')
+        // ->join('transaksis', function ($q) {
+        // $q->on('donasis.id','=','transaksis.donasi_id');
+        // })
+        // ->select('donasis.id',DB::raw('sum(transaksis.jumlah) as total'))
+        // ->groupBy('donasis.id')
+        // ->get();
+          
+
+
+
+       $data = donasi::leftJoin('transaksis', 'transaksis.donasi_id', '=', 'donasis.id')
+    //    ->get();
+            // ->where('transaksis.donasi_id' == null)
+            
             ->groupBy('donasis.id')
-            ->get(['donasis.id', DB::raw('sum(transaksis.jumlah) as value')])
-            ->sum('value');
+            ->get(['donasis.gambar','donasis.id', 'donasis.judul', 'donasis.jumlah', DB::raw('sum(transaksis.jumlah) as pemasukan')]);
+            // ->sum('value');
+     
+            // dd($data);
+        // $data = donasi::get();
 
         return view('User.halaman.donate', compact('data'));
     }
@@ -98,10 +114,19 @@ class DonateController extends Controller
     public function show($id)
     {
         $data = donasi::find($id);
+        $dataPemasukan = donasi::find($id)->transaksi()->get(DB::raw('sum(transaksis.jumlah) as pemasukan'))->pluck('pemasukan')->first();
         $uID = auth()->user()->id;
         $user = user::find($uID);
-        // dd($user);
-        return view('User.halaman.donation-detail', compact('data', 'user'));
+        // // $ps = donasi::join('transaksis', 'transaksis.donasi_id', '=', 'donasis.id')
+        // //    ->get();
+        //         // ->where('projects.status', '=', 'ongoing')
+        //         ->groupBy('donasis.id')
+        //         ->get( DB::raw('sum(transaksis.jumlah) as pemasukan'));
+        //         // ->sum('value');
+    
+                // dd($dataPemasukan);
+        // // dd($user);
+        return view('User.halaman.donation-detail', compact('data', 'user','dataPemasukan'));
     }
 
     /**
