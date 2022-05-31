@@ -49,17 +49,17 @@
                                 <img class="profile-user-img img-fluid img-circle" src="" alt="User profile picture">
                             </div> --}}
                             {{-- {{ Auth::user()->name }} --}}
-                            <h3 class="profile-username text-center">FAros </h3>
+                            <h3 class="profile-username text-center">{{Auth::user()->name}} </h3>
                             {{-- {{ Auth::user()->role }} --}}
                             <p class="text-muted text-center"></p>
                             {{-- {{ hideEmailAddress(Auth::user()->email) }} --}}
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>Email :</b> <a class="float-right">naufalfarros05@gmail.com</a>
+                                    <b>Email :</b> <a class="float-right">{{Auth::user()->email}}</a>
                                 </li>
                                 {{-- {{ hideUsername(Auth::user()->username) }} --}}
                                 <li class="list-group-item">
-                                    <b>Uername :</b> <a class="float-right">Faros</a>
+                                    <b>Uername :</b> <a class="float-right">{{Auth::user()->name}}</a>
                                 </li>
 
                             </ul>
@@ -137,9 +137,9 @@
                                 </div> --}}
                                 <div class="tab-pane" id="settings2">
                                     <form class="form-horizontal"
-                                        action="{{ url('admin/profile-setting') }}" method="POST">
+                                        action="{{ route('profile-setting.update', Auth::user()->id) }}" method="post">
                                         @csrf
-
+                                        @method('PUT')
                                         <div class="form-group row">
                                             <label for="password" class="col-sm-2 col-form-label">Password Baru</label>
                                             <div class="col-sm-10">
@@ -224,13 +224,13 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- bs-custom-file-input -->
+    {{-- <!-- bs-custom-file-input -->
     <script src="{{ asset('AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
-</script>
+</script> --}}
 
 
 

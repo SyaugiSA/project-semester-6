@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileAdminController extends Controller
 {
@@ -69,7 +72,25 @@ class ProfileAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        // return $request;
+        if( $request->password != null) 
+        {
+            $request->validate([      
+                 'password'=> ['required','min:6','confirmed', Rules\Password::defaults()],
+            ],[
+                'password.required' => 'Password Harus Di Isi',
+                'password.min' => 'Password Minimal 6 Huruf',
+                'password.confirmed' => 'Password Konfirmasi Tidak Cocok ',
+            ]);
+
+            auth()->user()->update([
+                'password' => Hash::make($request->password),
+            ]);
+            Alert::success('Ubah Password', 'Ubah Password Berhasil');
+            return redirect('/admin/profile-setting');
+
+        }
     }
 
     /**
