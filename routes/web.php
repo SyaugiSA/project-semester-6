@@ -63,10 +63,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
     Route::put('donasi/nonactive/{donasi}',[AprroveController::class,'nonactive'])->name('donasi.nonactive');
     Route::put('donasi/active/{donasi}', [AprroveController::class,'active'])->name('donasi.active');
+   
+    Route::put('transaksi/nonactive/{donasi}',[TransaksiController::class,'nonactive'])->name('trans.nonactive');
+    Route::put('transaksi/active/{donasi}', [TransaksiController::class,'active'])->name('trans.active');
 
-    Route::get('transaksi',[TransaksiController::class,'index'])->name('trans.index');
 
-
+    Route::resource('/transaksi', TransaksiController::class);
     Route::resource('/artikel-admin', ArtikelAdminController::class);
     Route::resource('/donasi-admin', DonasiAdminController::class);
     Route::resource('/profile-setting', ProfileAdminController::class);

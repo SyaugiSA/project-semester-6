@@ -72,47 +72,67 @@
                                         <th>Judul</th>
                                         <th>Nama</th>
                                         <th>Jumlah</th>
-                                        <th>Foto</th>
+                                        <th>Foto Bukti</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   
-
+                                    @foreach ($data as $d )
+                                        
+                                   
 
                                         <tr>
-                                            <td>1</td>
-                                            <td>judul</td>
-                                            <td>Donatur</td>
-                                            <td>jumlah donasi</td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$d->judul}}</td>
+                                            <td>{{$d->name}}</td>
+                                            <td>@currency($d->jumlah)</td>
                                             <td>
-                                               Foto donasi
-                                                {{-- <img src="{{'/storage/'.$photo->photo_event_path}}" alt="" width="175px" height="150px"> --}}
+                                               
+                                                <img src="{{'/storage/'.$d->bukti}}" alt="" width="175px" height="150px">
                                                
                                             </td>
                                             <td>
-                                                <form action="" method="post">
-                                                    <a href=""
+                                                <form action="{{route('transaksi.destroy', $d->id)}}" method="post">
+                                                    {{-- <a href="{{route('transaksi.edit', $d->id)}}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fas fa-user-edit"></i> Edit
-                                                    </a>
+                                                    </a> --}}
                                                     @csrf
                                                     @method('delete')
 
                                                     <button type="submit" class="btn btn-danger btn-sm" id="Hapus"><i
                                                             class="far fa-trash-alt"></i>Hapus</button>
                                                 </form>
+
+
+                                                <form action="{{ $d->is_verified == 1 ? route('trans.nonactive',$d->id) : route('trans.active',$d->id)  }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    @if ($d->is_verified == 1)
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Pakah Anda Yakin Ingin Menonaktifkan Data Ini?')">
+                                                        <i class="fa fa-exclamation"></i></button>
+                                                    @else
+                                                    <button type="submit" class="btn btn-primary"
+                                                        onclick="return confirm('Pakah Anda Yakin Ingin Mengaktifkan Data Ini?')" >
+                                                        <i class="fa fa-check"></i></button>
+                                                    @endif
+                                                </form>
+
+
                                             </td>
                                         </tr>
-
+                                        @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
                                         <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Deskripsi</th>
-                                        <th>Foto</th>
+                                        <th>Nama</th>
+                                        <th>Jumlah</th>
+                                        <th>Foto Bukti</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

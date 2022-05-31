@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\donasi;
+use App\Models\transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TransaksiController extends Controller
 {
@@ -14,8 +18,23 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        // dd('coba');
-        return view('admin.Transaksi.ListTrans');
+        
+        $data = transaksi::select(
+                'transaksis.id',
+                'donasis.judul',
+                'users.name',
+                'transaksis.jumlah',
+                'transaksis.bukti',
+                'transaksis.is_verified'
+        )
+        ->join('users','users.id','=','transaksis.user_id')
+        ->join('donasis','donasis.id','=','transaksis.donasi_id')
+        ->orderBy('donasis.id','asc')
+        ->get();
+            // dd($data);
+            // return $data;
+
+        return view('admin.Transaksi.ListTrans', compact('data'));
     }
 
     /**
@@ -81,6 +100,31 @@ class TransaksiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data_delete = transaksi::findorfail($id);
+        // dd($data_delete->gambar);
+        Storage::disk('local')->delete('public/trans-photo/' . basename($data_delete['bukti']));
+
+        $data_delete->delete();
+        return redirect('/admin/transaksi');
     }
+
+    public function nonactive($id)
+    {
+        DB::table('transaksis')->where('id',$id)->update([
+            'is_verified'=>0,
+        ]);
+        return redirect('/admin/transaksi')->with('success','Data Donasi Telah Dinonaktifkan');
+    }
+    public function active($id)
+    {
+        DB::table('transaksis')->where('id',$id)->update([
+            'is_verified'=>1,
+        ]);
+        return redirect('/admin/transaksi')->with('success','Data Donasi Telah Diaktifkan');
+    }
+
+
+
+
+
 }

@@ -82,7 +82,7 @@
                                             <td>{{ $d->judul }}</td>
                                             <td>{{ $d->added_at }}</td>
                                             <td>{{ $d->ended_at }}</td>
-                                            <td>{{ $d->jumlah }}</td>
+                                            <td>@currency($d->jumlah)</td>
                                             <td>{{ $d->deskripsi }}</td>
                                             <td> <img src="{{ '/storage/' . $d->gambar }}" alt="" width="175px"
                                                     height="150px"></td>

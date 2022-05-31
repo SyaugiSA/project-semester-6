@@ -69,7 +69,7 @@
 
 
                  <li class="nav-item">
-                     <a href="{{route('trans.index')}}" class="nav-link">
+                     <a href="{{route('transaksi.index')}}" class="nav-link">
                         <i class="fas fa-money-bill-alt"></i>
                          <p>
                              Transaksi Donasi
