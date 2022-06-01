@@ -4,8 +4,7 @@
 
         <div class="container">
             <div class="foto-donasi">
-
-                <img src="{{ asset('image/foto_takmir.jpg') }}" alt="">
+                <img src="{{'/storage/'.$data->gambar}}" alt="">
             </div>
             <h2 class="title-detail-donation">{{$data->judul}}</h2>
             <p>Desa kunir, Kec.kaliwates, kab jember</p>

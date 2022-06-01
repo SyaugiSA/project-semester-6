@@ -14,11 +14,11 @@
                 @foreach ($data as $val)
                     <li>
                         <a href="/artikel/{{$val->id}}" class="card">
-                            <img src="{{asset('image/foto_takmir.jpg')}}" class="card__image" alt="" />
+                            <img src="{{'/storage/'.$val->gambar}}" class="card__image" alt="" />
                             <div class="card__overlay">
                             <div class="card__header">
                                 <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-                                {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
+                                {{-- <img class="card__thumb" src="{{$val->gambar}}" alt="" /> --}}
                             <div class="card__header-text">
                               <h3 class="card__title">{{$val->judul}}</h3>
                               <span class="card__status">{{$val->created_at}}</span>
