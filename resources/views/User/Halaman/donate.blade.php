@@ -18,14 +18,7 @@
                     <p> Dibutuhkan  @currency($d->jumlah)</p>
                     <p> Dana Masuk @currency($d->pemasukan)</p>
                     <div class="progress-donation" >
-                        <div class="progress-donation-done" data-done="@php
-                            $persen = ((int)$d->pemasukan / (int)$d->jumlah)*100;
-                            if($persen > 100){
-                                echo 100 ;
-                            }else {
-                                echo $persen ;
-                            }
-                        @endphp" id="text"></div>
+                        <div class="progress-donation-done" data-done="" style="width: {{$d->total}}%; opacity: 1;" id="text">{{$d->total}}%</div>
                     </div>
                     <a href="{{url('/donate/detail',$d->id)}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
 
@@ -37,21 +30,22 @@
         </div>
     </section>
 
-
+  
     <script>
 
-        
-        const progress = document.querySelector('.progress-donation-done');
-        let text = progress.getAttribute('data-done');
-        document.getElementById("text").innerHTML = text + '%'; 
 
-        setTimeout(() => {
+
+        // const progress = document.querySelector('.progress-donation-done');
+        // let text = progress.getAttribute('data-done');
+        // document.getElementById("text").innerHTML = text + '%'; 
+
+        // setTimeout(() => {
             
-            progress.style.opacity = 1;
-            progress.style.width = progress.getAttribute('data-done') + '%' ;
-        }, 500);
+        //     progress.style.opacity = 1;
+        //     progress.style.width = progress.getAttribute('data-done') + '%' ;
+        // }, 500);
 
-
+        
 
     </script>
 @endsection

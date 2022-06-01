@@ -60,9 +60,17 @@ class DonateController extends Controller
             'donasis.jumlah',
             
             DB::raw("(SELECT sum(transaksis.jumlah) from transaksis 
-                where transaksis.is_verified=1 and transaksis.donasi_id = donasis.id) as pemasukan")
+                where transaksis.is_verified=1 and transaksis.donasi_id = donasis.id) as pemasukan, 
+                (SELECT ROUND(pemasukan/donasis.jumlah*100, 1)) as total ")
+            
                 
         )->where('is_actived','=', 1)->get();
+            // return $data;
+        // $persen = donasi::select(
+        //         'donasis.jumlah',
+        //         'transaksis.jumlah',
+                
+        // )->get();
         
         return view('User.halaman.donate', compact('data'));
     }
