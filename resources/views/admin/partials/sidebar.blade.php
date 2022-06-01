@@ -50,7 +50,9 @@
                  </li>
                  {{-- @if (Auth::user()->role == 'admin')                     --}}
                  <li class="nav-item">
-                     <a href="{{url('admin/donasi-admin')}}" class="nav-link">
+
+                     <a href="{{route('donasi-admin.index')}}" class="nav-link">
+
                          <i class="fas fa-user-tie"></i>
                          <p>
                              Tambah Donasi
@@ -59,7 +61,9 @@
                  </li>
                  {{-- @endif --}}
                  <li class="nav-item">
-                    <a href="{{ url('admin/artikel-admin') }}" class="nav-link">
+
+                    <a href="{{ route('artikel-admin.index') }}" class="nav-link">
+
                         <i class="fas fa-calendar-alt"></i>
                         <p>
                             Tambah Artikel

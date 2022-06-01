@@ -39,7 +39,7 @@
                         <div class="card-body">
                             <!-- Date -->
                             <div class="col-6">
-                                <form action="{{ route('artikel-admin.update') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('artikel-admin.update', $data->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
                                     <div class="form-group">
@@ -48,21 +48,21 @@
                                             class="form-control @error('judul')
                                             is-invalid
                                         @enderror"
-                                            id="Judul" value="{{ $edit->judul }}" aria-describedby="emailHelp"
+                                            id="Judul" value="{{ $data->judul }}" aria-describedby="emailHelp"
                                             placeholder="Judul Event" name="judul">
                                         @error('judul')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
-                                   
+
                                     <!-- Date -->
                                     <div class="form-group">
                                         <label>Date:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="text" class="form-control datetimepicker-input  @error('tanggal')
                                             is-invalid
-                                        @enderror" 
+                                        @enderror"
                                                 data-target="#reservationdate" name="tanggal"/>
                                             <div class="input-group-append" data-target="#reservationdate"
                                                 data-toggle="datetimepicker">
@@ -72,15 +72,15 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                         </div>
-                                       
+
                                     </div>
                                     <div class="form-group">
                                         <label>Deskripsi</label>
                                         <textarea class="form-control @error('deskripsi')
                                         is-invalid
                                     @enderror " rows="3" placeholder="Deskripsi ..."
-                                            name="deskripsi">{{$edit->deskripsi}}</textarea>
-                                           
+                                            name="deskripsi">{{$data->deskripsi}}</textarea>
+
                                             @error('deskripsi')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -96,7 +96,7 @@
                                                 </span>
                                             @endforeach
                                         @endif --}}
-                                        
+
                                     </div>
 
 

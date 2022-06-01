@@ -54,7 +54,7 @@
                                         @enderror
                                     </div>
 
-                                   
+
                                     <!-- Date -->
                                     <div class="form-group">
                                         <label>Date:</label>
@@ -71,7 +71,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                         </div>
-                                       
+
                                     </div>
                                     <div class="form-group">
                                         <label>Deskripsi</label>
@@ -79,7 +79,7 @@
                                         is-invalid
                                     @enderror " rows="3" placeholder="Deskripsi ..."
                                             name="deskripsi" >{{old('deskripsi') }}</textarea>
-                                           
+
                                             @error('deskripsi')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -87,7 +87,7 @@
 
                                     <div class="form-group">
                                         <label for="">Foto Event</label>
-                                        <input type="file" name="images[]" multiple class="form-control" accept="image/png, image/jpeg">
+                                        <input type="file" name="image" multiple class="form-control" accept="image/png, image/jpeg">
                                         {{-- @if ($errors->has('files'))
                                             @foreach ($errors->get('files') as $error)
                                                 <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
                                                 </span>
                                             @endforeach
                                         @endif --}}
-                                        
+
                                     </div>
 
 

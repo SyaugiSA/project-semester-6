@@ -12,7 +12,9 @@ class artikel extends Model
 
     protected $fillable = [
         'judul',
-        'deskripsi'
+        'deskripsi',
+        'tanggal',
+        'gambar'
     ];
 
     public function comment(){
