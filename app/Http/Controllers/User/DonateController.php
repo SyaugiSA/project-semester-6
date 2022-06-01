@@ -138,6 +138,7 @@ class DonateController extends Controller
             'donasis.gambar',
             'donasis.judul',
             'donasis.jumlah',
+            'donasis.deskripsi',
             
             DB::raw("(SELECT sum(transaksis.jumlah) from transaksis 
                 where transaksis.is_verified=1 and transaksis.donasi_id = donasis.id) as pemasukan, 
