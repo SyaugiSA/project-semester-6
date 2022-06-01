@@ -15,24 +15,26 @@
             
        
         <div class="container">
-            
+            @foreach ($data as $d )
+                
+          
             <div class="foto-donasi">
 
-                <img src="{{ '/storage/' . $data->gambar }}" alt="">
+                <img src="{{ '/storage/'. $d->gambar }}" alt="">
             </div>
-            <h2 class="title-detail-donation">{{ $data->judul }} </h2>
-            <p>Dibutuhkan @currency($data->jumlah)</p>
+            <h2 class="title-detail-donation">{{ $d->judul }} </h2>
+            <p>Dibutuhkan @currency($d->jumlah)</p>
             
                 
-            <p> Terkumpul @currency($dataPemasukan)</p>
+            <p> Terkumpul @currency($d->pemasukan)</p>
           
             <div class="progress-donation-detail">
-                <div class="progress-donation-done-detail" data-done-detail="90" id="text"></div>
+                <div class="progress-donation-done-detail" data-done-detail="" style="width:{{$d->total}}%; opacity: 1;  " id="text">{{$d->total}} %</div>
             </div>
 
-            <p> {{ $data->deskripsi }}</p>
+            <p> {{ $d->deskripsi }}</p>
 
-
+           
         </div>
         
     </section>
@@ -48,7 +50,8 @@
                 <!-- progressbar -->
                 {{-- {{ csrf_field() }} --}}
                 @csrf
-                <input type="hidden" id="donate" name="donate" value="{{ $data->id }}">
+                <input type="hidden" id="donate" name="donate" value="{{ $d->id }}">
+    @endforeach
                 <ul id="progressbar">
                     <li class="active" id="account"><strong>Pilih Rek Tujuan</strong></li>
 
@@ -280,7 +283,7 @@
     <!-- jQuery -->
     <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
 
-    <script>
+    {{-- <script>
         const progress = document.querySelector('.progress-donation-done-detail');
         let text = progress.getAttribute('data-done-detail');
         document.getElementById("text").innerHTML = text + '%';
@@ -290,7 +293,7 @@
             progress.style.opacity = 1;
             progress.style.width = progress.getAttribute('data-done-detail') + '%';
         }, 500);
-    </script>
+    </script> --}}
 
     <script src="{{ asset('js/FeLaznas/formatRp.js') }}"></script>
 @endsection

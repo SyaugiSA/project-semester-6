@@ -18,7 +18,7 @@
                     <p> Dibutuhkan  @currency($d->jumlah)</p>
                     <p> Dana Masuk @currency($d->pemasukan)</p>
                     <div class="progress-donation" >
-                        <div class="progress-donation-done" data-done="" style="width: {{$d->total}}%; opacity: 1;" id="text">{{$d->total}}%</div>
+                        <div class="progress-donation-done" data-done="" style="width:{{$d->total}}%; opacity: 1;" id="text">{{$d->total}}%</div>
                     </div>
                     <a href="{{url('/donate/detail',$d->id)}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
 
