@@ -215,7 +215,7 @@
                           <p> Dibutuhkan  @currency($d->jumlah)</p>
                           <p> Dana Masuk @currency($d->pemasukan)</p>
                           <div class="progress-donation" >
-                              <div class="progress-donation-done" data-done="90" id="text"></div>
+                              <div class="progress-donation-done" data-done=""  style="width:{{$d->total}}%; opacity: 1;" id="text">{{$d->total}}</div>
                           </div>
                           <a href="{{url('/donate/detail',$d->id)}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
       
@@ -380,14 +380,14 @@
     <script src="{{ asset('js/FeLaznas/api/PrayTime.js') }}"></script>
 
     <script>
-        const progress = document.querySelector('.progress-donation-done');
-        let text = progress.getAttribute('data-done');
-        document.getElementById("text").innerHTML = text + '%';
+        // const progress = document.querySelector('.progress-donation-done');
+        // let text = progress.getAttribute('data-done');
+        // document.getElementById("text").innerHTML = text + '%';
 
-        setTimeout(() => {
+        // setTimeout(() => {
 
-            progress.style.opacity = 1;
-            progress.style.width = progress.getAttribute('data-done') + '%';
-        }, 500);
+        //     progress.style.opacity = 1;
+        //     progress.style.width = progress.getAttribute('data-done') + '%';
+        // }, 500);
     </script>
 @endsection

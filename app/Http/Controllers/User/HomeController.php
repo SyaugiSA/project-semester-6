@@ -23,14 +23,18 @@ class HomeController extends Controller
               
 
 
-            $data = donasi::select(
-                'donasis.gambar',
-                'donasis.id',
-                'donasis.judul',
-                'donasis.jumlah',
-                DB::raw("(SELECT sum(transaksis.jumlah) from transaksis 
-                    where transaksis.is_verified=1 and transaksis.donasi_id = donasis.id) as pemasukan")
-            )->where('is_actived','=', 1)->get();
+        $data = donasi::select(
+            'donasis.gambar',
+            'donasis.id',
+            'donasis.judul',
+            'donasis.jumlah',
+            
+            DB::raw("(SELECT sum(transaksis.jumlah) from transaksis 
+                where transaksis.is_verified=1 and transaksis.donasi_id = donasis.id) as pemasukan, 
+                (SELECT ROUND(pemasukan/donasis.jumlah*100, 1)) as total ")
+            
+                
+        )->where('is_actived','=', 1)->get();
 
         return view('User.partial.home' ,compact('data'));
 
