@@ -5,100 +5,47 @@
     <section><div class="progress-bar"></div>
         <div class="container">
             <div class="row align-items-start">
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
+                @foreach ($data as $d )
                     
+
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
+                    {{-- <input type="text" value="{{$d->id}}"> --}}
                     <div class="card-donation">
-                        <img src="{{asset('image/humas.jpg')}}" alt="">
+                        <img src="{{'/storage/'.$d->gambar}}" alt="">
                         <p>Laznas</p>
         
-                    <h2 class="title">Donasi Korban Banjir</h2>
-                    <p> Rp. 500.000 Terkumpul</p>
+                    <h2 class="title">{{$d->judul}}</h2>
+                    <p> Dibutuhkan  @currency($d->jumlah)</p>
+                    <p> Dana Masuk @currency($d->pemasukan)</p>
                     <div class="progress-donation" >
-                        <div class="progress-donation-done" data-done="90" id="text"></div>
+                        <div class="progress-donation-done" data-done="" style="width:{{$d->total}}%; opacity: 1;" id="text">{{$d->total}}%</div>
                     </div>
-                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
+                    <a href="{{url('/donate/detail',$d->id)}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
 
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
-                    
-                    <div class="card-donation">
-                        <img src="{{asset('image/humas.jpg')}}" alt="">
-                        <p>Laznas</p>
-        
-                    <h2 class="title">Donasi Korban Banjir</h2>
-                    <p>Dibuthkan  Rp 4.000.000 </p>
-                        <div class="progress-donation" >
-                            <div class="progress-donation-done" data-done="50" id="text"></div>
-                        </div>
-                       <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
-                    
-                    <div class="card-donation">
-                        <img src="{{asset('image/humas.jpg')}}" alt="">
-                        <p>Laznas</p>
-        
-                    <h2 class="title">Donasi Korban Banjir</h2>
-                    <p> Rp. 500.000 Terkumpul</p>
-                    <div class="progress-donation" >
-                        <div class="progress-donation-done" data-done="90" id="text"></div>
-                    </div>
-                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
-
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
-                    
-                    <div class="card-donation">
-                        <img src="{{asset('image/humas.jpg')}}" alt="">
-                        <p>Laznas</p>
-        
-                    <h2 class="title">Donasi Korban Banjir</h2>
-                    <p> Rp. 500.000 Terkumpul</p>
-                    <div class="progress-donation" >
-                        <div class="progress-donation-done" data-done="90" id="text"></div>
-                    </div>
-                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
-
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4  mt-2 mb-2 ">
-                    
-                    <div class="card-donation">
-                        <img src="{{asset('image/foto_takmir.jpg')}}" alt="">
-                        <p>Laznas</p>
-        
-                    <h2 class="title">Donasi Korban Banjir</h2>
-                    <p> Rp. 500.000 Terkumpul</p>
-                    <div class="progress-donation" >
-                        <div class="progress-donation-done" data-done="90" id="text"></div>
-                    </div>
-                    <a href="{{url('/donass/detail')}}"><button class="rounded-pill btn-donation m-2">Donasi</button></a> 
-
-                    </div>
-                </div>
+                @endforeach
             </div>
             
         </div>
     </section>
 
-
+  
     <script>
 
-        
-        const progress = document.querySelector('.progress-donation-done');
-        let text = progress.getAttribute('data-done');
-        document.getElementById("text").innerHTML = text + '%';
 
-        setTimeout(() => {
+
+        // const progress = document.querySelector('.progress-donation-done');
+        // let text = progress.getAttribute('data-done');
+        // document.getElementById("text").innerHTML = text + '%'; 
+
+        // setTimeout(() => {
             
-            progress.style.opacity = 1;
-            progress.style.width = progress.getAttribute('data-done') + '%' ;
-        }, 500);
+        //     progress.style.opacity = 1;
+        //     progress.style.width = progress.getAttribute('data-done') + '%' ;
+        // }, 500);
 
-
+        
 
     </script>
 @endsection

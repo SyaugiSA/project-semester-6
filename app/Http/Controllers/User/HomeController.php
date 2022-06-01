@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\donasi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
-class ProfileAdminController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,28 @@ class ProfileAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.Profile.profile_setting');
+        
+        // $data = donasi::leftJoin('transaksis', 'transaksis.donasi_id', '=', 'donasis.id')     
+        //         ->groupBy('donasis.id')
+        //         ->get(['donasis.gambar','donasis.id', 'donasis.judul', 'donasis.jumlah', DB::raw('sum(transaksis.jumlah) as pemasukan')]);
+              
+
+
+        $data = donasi::select(
+            'donasis.gambar',
+            'donasis.id',
+            'donasis.judul',
+            'donasis.jumlah',
+            
+            DB::raw("(SELECT sum(transaksis.jumlah) from transaksis 
+                where transaksis.is_verified=1 and transaksis.donasi_id = donasis.id) as pemasukan, 
+                (SELECT ROUND(pemasukan/donasis.jumlah*100, 1)) as total ")
+            
+                
+        )->where('is_actived','=', 1)->get();
+
+        return view('User.partial.home' ,compact('data'));
+
     }
 
     /**
@@ -72,25 +92,7 @@ class ProfileAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
-        // return $request;
-        if( $request->password != null) 
-        {
-            $request->validate([      
-                 'password'=> ['required','min:6','confirmed', Rules\Password::defaults()],
-            ],[
-                'password.required' => 'Password Harus Di Isi',
-                'password.min' => 'Password Minimal 6 Huruf',
-                'password.confirmed' => 'Password Konfirmasi Tidak Cocok ',
-            ]);
-
-            auth()->user()->update([
-                'password' => Hash::make($request->password),
-            ]);
-            Alert::success('Ubah Password', 'Ubah Password Berhasil');
-            return redirect('/admin/profile-setting');
-
-        }
+        //
     }
 
     /**

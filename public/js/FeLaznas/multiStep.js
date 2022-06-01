@@ -9,6 +9,7 @@ $(document).ready(function(){
     
     $(".next").click(function(){
         
+        
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
         
@@ -71,7 +72,7 @@ $(document).ready(function(){
     
     $(".submit").click(function(){
         return false;
-    })
+    });
 
     $("div.myDiv").hide();
     $('#selectBank').on('change', function(){

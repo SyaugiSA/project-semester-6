@@ -12,20 +12,23 @@
         href="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.css') }}">
+
+
 @endsection
 
 
 
 @section('content')
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Donasi Laznas</h1>
+                    <h1>Transaksi</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Donasi Laznas</a></li>
+                        <li class="breadcrumb-item"><a href="#">Transaksi</a></li>
                     </ol>
                 </div>
             </div>
@@ -45,7 +48,7 @@
                     <div id="fails_message"></div>
                     <div class="card">
                         <div class="card-header bg-primary">
-                            <h3 class="card-title ">Donasi Laznas</h3>
+                            <h3 class="card-title ">Data Transaksi</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -54,8 +57,8 @@
 
                             <div class="mb-3">
 
-                                <a href="{{ route('donasi-admin.create') }}" class="btn btn-primary my-3"><i
-                                        class="fas fa-info"></i> Tambah Data Donasi</a>
+                                <a href="#" class="btn btn-primary my-3"><i
+                                        class="fas fa-info"></i> Tambah Data Transaksi</a>
 
 
                             </div>
@@ -67,44 +70,47 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Judul</th>
-                                        <th>Mulai</th>
-                                        <th>Berakhir</th>
+                                        <th>Nama</th>
                                         <th>Jumlah</th>
-                                        <th>Deskripsi</th>
-                                        <th>Foto</th>
+                                        <th>Foto Bukti</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $d)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $d->judul }}</td>
-                                            <td>{{ $d->added_at }}</td>
-                                            <td>{{ $d->ended_at }}</td>
-                                            <td>@currency($d->jumlah)</td>
-                                            <td>{{ $d->deskripsi }}</td>
-                                            <td> <img src="{{ '/storage/' . $d->gambar }}" alt="" width="175px"
-                                                    height="150px"></td>
+                                  
+                                    @foreach ($data as $d )
+                                        
+                                   
 
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$d->judul}}</td>
+                                            <td>{{$d->name}}</td>
+                                            <td>@currency($d->jumlah)</td>
                                             <td>
-                                                <form action="{{ route('donasi-admin.destroy', $d->id) }}" method="post">
-                                                    <a href="{{ route('donasi-admin.edit', $d->id) }}"
+                                               
+                                                <img src="{{'/storage/'.$d->bukti}}" alt="" width="175px" height="150px">
+                                               
+                                            </td>
+                                            <td>
+                                                <form action="{{route('transaksi.destroy', $d->id)}}" method="post">
+                                                    {{-- <a href="{{route('transaksi.edit', $d->id)}}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fas fa-user-edit"></i> Edit
-                                                    </a>
+                                                    </a> --}}
                                                     @csrf
                                                     @method('delete')
-                                                        
+
                                                     <button type="submit" class="btn btn-danger btn-sm" id="Hapus"><i
                                                             class="far fa-trash-alt"></i>Hapus</button>
                                                 </form>
 
-                                                <form action="{{ $d->is_actived == 1 ? route('donasi.nonactive',$d->id) : route('donasi.active',$d->id)  }}"
+
+                                                <form action="{{ $d->is_verified == 1 ? route('trans.nonactive',$d->id) : route('trans.active',$d->id)  }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('PUT')
-                                                    @if ($d->is_actived == 1)
+                                                    @if ($d->is_verified == 1)
                                                     <button type="submit" class="btn btn-danger"
                                                         onclick="return confirm('Pakah Anda Yakin Ingin Menonaktifkan Data Ini?')">
                                                         <i class="fa fa-exclamation"></i></button>
@@ -114,19 +120,19 @@
                                                         <i class="fa fa-check"></i></button>
                                                     @endif
                                                 </form>
-                                             
+
+
                                             </td>
                                         </tr>
-                                    @endforeach
+                                        @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
                                         <th>Judul</th>
-                                        <th>Tanggal</th>
-                                        <th>Jumlah Dana</th>
-                                        <th>Deskripsi</th>
-                                        <th>Foto</th>
+                                        <th>Nama</th>
+                                        <th>Jumlah</th>
+                                        <th>Foto Bukti</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -144,6 +150,17 @@
         {{-- End Table --}}
     </section>
     <!-- /.content -->
+
+
+
+
+
+
+
+
+
+
+
 @endsection
 
 @section('script')
@@ -181,4 +198,10 @@
             });
         });
     </script>
+
+
+
+
+
+
 @endsection
