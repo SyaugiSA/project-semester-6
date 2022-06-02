@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="col-md order">
-                                <img src="{{ asset('image/pendidikan.jpg') }}" alt="">
+                                <img src="{{ asset('image/sekolah.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="col-md order">
-                                <img src="{{ asset('image/dakwah.jpeg') }}" alt="">
+                                <img src="{{ asset('image/dakwah2.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="col-md order">
-                                <img src="{{ asset('image/kemanuiaan.jpg') }}" alt="">
+                                <img src="{{ asset('image/kemanusiaan2.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                             <div class="col-md order">
-                                <img src="{{ asset('image/kemitraan.png') }}" alt="">
+                                <img src="{{ asset('image/mitra2.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -236,7 +236,7 @@
                     <ul class="cards">
                         <li>
                             <a href="" class="card">
-                                <img src="{{ asset('image/foto_takmir.jpg') }}" class="card__image" alt="" />
+                                <img src="{{ asset('image/donasi1.jpg') }}" class="card__image" alt="" />
                                 <div class="card__overlay">
                                     <div class="card__header">
                                         <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
@@ -244,8 +244,7 @@
                                         </svg>
                                         {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
                                         <div class="card__header-text">
-                                            <h3 class="card__title">Penyaluran Dana Di Gunung Lawu kab.lumajang, kec.
-                                                lapose.</h3>
+                                            <h3 class="card__title">Sedekah untuk Duafa</h3>
                                             <span class="card__status">01-April-2022</span>
                                         </div>
                                     </div>
@@ -257,7 +256,7 @@
                         </li>
                         <li>
                             <a href="" class="card">
-                                <img src="{{ asset('image/foto_takmir.jpg') }}" class="card__image" alt="" />
+                                <img src="{{ asset('image/artikel3.jpg') }}" class="card__image" alt="" />
                                 <div class="card__overlay">
                                     <div class="card__header">
                                         <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
@@ -265,8 +264,7 @@
                                         </svg>
                                         {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
                                         <div class="card__header-text">
-                                            <h3 class="card__title">Penyaluran Dana Di Gunung Lawu kab.lumajang, kec.
-                                                lapose.</h3>
+                                            <h3 class="card__title">Kajian Kitab Rutin Syamail Muhammadiyah</h3>
                                             <span class="card__status">01-April-2022</span>
                                         </div>
                                     </div>
@@ -278,7 +276,7 @@
                         </li>
                         <li>
                             <a href="" class="card">
-                                <img src="{{ asset('image/foto_takmir.jpg') }}" class="card__image" alt="" />
+                                <img src="{{ asset('image/artikel2.jpg') }}" class="card__image" alt="" />
                                 <div class="card__overlay">
                                     <div class="card__header">
                                         <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
@@ -286,8 +284,7 @@
                                         </svg>
                                         {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
                                         <div class="card__header-text">
-                                            <h3 class="card__title">Penyaluran Dana Di Gunung Lawu kab.lumajang, kec.
-                                                lapose.</h3>
+                                            <h3 class="card__title">Kajian Kitab Zaadul Ma'aad</h3>
                                             <span class="card__status">01-April-2022</span>
                                         </div>
                                     </div>
@@ -299,7 +296,7 @@
                         </li>
                         <li>
                             <a href="" class="card">
-                                <img src="{{ asset('image/foto_takmir.jpg') }}" class="card__image" alt="" />
+                                <img src="{{ asset('image/artikel1.jpg') }}" class="card__image" alt="" />
                                 <div class="card__overlay">
                                     <div class="card__header">
                                         <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
@@ -307,8 +304,7 @@
                                         </svg>
                                         {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
                                         <div class="card__header-text">
-                                            <h3 class="card__title">Penyaluran Dana Di Gunung Lawu kab.lumajang, kec.
-                                                lapose.</h3>
+                                            <h3 class="card__title">Kajian Kitab Bulughul Maram</h3>
                                             <span class="card__status">01-April-2022</span>
                                         </div>
                                     </div>
@@ -332,7 +328,7 @@
             <div class="row mt-5 pt-4">
                 <div class="col-4">
                     <div class="rounded overflow-hidden image-wrapper">
-                        <img src="{{ asset('image/masjid2.jpg') }}" alt="">
+                        <img src="{{ asset('image/masjid4.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-4">
