@@ -57,12 +57,12 @@
                                    
                                     <!-- Date -->
                                     <div class="form-group">
-                                        <label>Date:</label>
+                                        <label>Tanggal Mulai</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="text" class="form-control datetimepicker-input  @error('tanggal')
                                             is-invalid
                                         @enderror"
-                                                data-target="#reservationdate" name="tanggal" />
+                                                data-target="#reservationdate" name="added_at" />
                                             <div class="input-group-append" data-target="#reservationdate"
                                                 data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -72,6 +72,30 @@
                                         @enderror
                                         </div>
                                        
+                                    </div>
+                                    <!-- Date -->
+                                    <div class="form-group">
+                                        <label>Tanggal Berakhir:</label>
+                                        <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input  @error('tanggal2')
+                                            is-invalid
+                                        @enderror"
+                                                data-target="#reservationdate2" name="ended_at" />
+                                            <div class="input-group-append" data-target="#reservationdate2"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                            @error('tanggal2')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pemasukan">Jumlah Dana yang dibutuhkan</label>
+                                        <input type="text" class="form-control" id="jumlah_donasi" name="jumlah"
+                                            placeholder="Dana yang dibutuhkan">
+            
                                     </div>
                                     <div class="form-group">
                                         <label>Deskripsi</label>
@@ -86,15 +110,10 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="">Foto Event</label>
-                                        <input type="file" name="images[]" multiple class="form-control" accept="image/png, image/jpeg">
-                                        {{-- @if ($errors->has('files'))
-                                            @foreach ($errors->get('files') as $error)
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $error }}</strong>
-                                                </span>
-                                            @endforeach
-                                        @endif --}}
+                                        <div class="custom-file">
+                                            <input type="file" accept="image/png, image/jpeg" class="custom-file-input" id="exampleInputFile" name="image" required>
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
                                         
                                     </div>
 
@@ -132,9 +151,21 @@
     <script src="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{asset('js/FeLaznas/formatRp.js')}}"></script>
+      <!-- bs-custom-file-input -->
+      <script src="{{ asset('AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+      <script>
+      $(function () {
+        bsCustomFileInput.init();
+      });
+      </script>
     <script>
         //Date picker
         $('#reservationdate').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+
+        $('#reservationdate2').datetimepicker({
             format: 'DD/MM/YYYY'
         });
     </script>
