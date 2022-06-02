@@ -26,7 +26,7 @@ class ArtikelController extends Controller
      */
     public function show($id)
     {
-        $data = artikel::find($id)->first();
+        $data = artikel::find($id);
 
         return view('User.halaman.artikel-detail', compact('data'));
     }

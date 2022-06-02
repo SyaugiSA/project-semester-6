@@ -7,9 +7,8 @@
                 <img src="{{'/storage/'.$data->gambar}}" alt="">
             </div>
             <h2 class="title-detail-donation">{{$data->judul}}</h2>
-            <p>Desa kunir, Kec.kaliwates, kab jember</p>
 
-            <p> Rp. 500.000 Terkumpul</p>
+            <h2> Deskripsi</h2>
 
 
             <p> {{$data->deskripsi}}</p>
