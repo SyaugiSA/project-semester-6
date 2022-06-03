@@ -233,10 +233,12 @@
             <a href="{{ url('artikel') }}"><button class="rounded-pill btn-show-details">Show all</button></a>
             <div class="container">
                 <div>
+                    
                     <ul class="cards">
+                        @foreach ($artikel as $d )
                         <li>
-                            <a href="" class="card">
-                                <img src="{{ asset('image/donasi1.jpg') }}" class="card__image" alt="" />
+                            <a href="/artikel/{{$d->id}}" class="card">
+                                <img src="{{ '/storage/'. $d->gambar }}" class="card__image" alt="" />
                                 <div class="card__overlay">
                                     <div class="card__header">
                                         <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
@@ -244,78 +246,16 @@
                                         </svg>
                                         {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
                                         <div class="card__header-text">
-                                            <h3 class="card__title">Sedekah untuk Duafa</h3>
-                                            <span class="card__status">01-April-2022</span>
+                                            <h3 class="card__title">{{$d->judul}}</h3>
+                                            <span class="card__status">{{$d->tanggal}}</span>
                                         </div>
                                     </div>
-                                    <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Asperiores, blanditiis?</p>
+                                    <p class="card__description">{{$d->deskripsi}}</p>
                                     <p class="card__description">Klik Artikel - Selengakpnya</p>
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="" class="card">
-                                <img src="{{ asset('image/artikel3.jpg') }}" class="card__image" alt="" />
-                                <div class="card__overlay">
-                                    <div class="card__header">
-                                        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                                            <path />
-                                        </svg>
-                                        {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
-                                        <div class="card__header-text">
-                                            <h3 class="card__title">Kajian Kitab Rutin Syamail Muhammadiyah</h3>
-                                            <span class="card__status">01-April-2022</span>
-                                        </div>
-                                    </div>
-                                    <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Asperiores, blanditiis?</p>
-                                    <p class="card__description">Klik Artikel - Selengakpnya</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="card">
-                                <img src="{{ asset('image/artikel2.jpg') }}" class="card__image" alt="" />
-                                <div class="card__overlay">
-                                    <div class="card__header">
-                                        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                                            <path />
-                                        </svg>
-                                        {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
-                                        <div class="card__header-text">
-                                            <h3 class="card__title">Kajian Kitab Zaadul Ma'aad</h3>
-                                            <span class="card__status">01-April-2022</span>
-                                        </div>
-                                    </div>
-                                    <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Asperiores, blanditiis?</p>
-                                    <p class="card__description">Klik Artikel - Selengakpnya</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="card">
-                                <img src="{{ asset('image/artikel1.jpg') }}" class="card__image" alt="" />
-                                <div class="card__overlay">
-                                    <div class="card__header">
-                                        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                                            <path />
-                                        </svg>
-                                        {{-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" /> --}}
-                                        <div class="card__header-text">
-                                            <h3 class="card__title">Kajian Kitab Bulughul Maram</h3>
-                                            <span class="card__status">01-April-2022</span>
-                                        </div>
-                                    </div>
-                                    <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Asperiores, blanditiis?</p>
-                                    <p class="card__description">Klik Artikel - Selengakpnya</p>
-                                </div>
-                            </a>
-                        </li>
-
-
+                        @endforeach
                     </ul>
                 </div>
             </div>

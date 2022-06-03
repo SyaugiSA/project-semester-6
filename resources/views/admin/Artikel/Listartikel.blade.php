@@ -87,11 +87,9 @@
                                         <td>{{$val->created_at}}</td>
                                         <td>{{$val->deskripsi}}</td>
                                         <td>
-                                            {{-- @foreach ($d->photo as $photo )
-                                            <img src="{{'/storage/'.$photo->photo_event_path}}" alt="" width="175px" height="150px">
-                                            @endforeach --}}
-
-                                            FOTO
+                                            <img src="{{'/storage/'.$val->gambar}}" width="175px"
+                                            height="150px" alt="">
+                                            
                                         </td>
                                         <td>
                                             <form action="{{route('artikel-admin.destroy', $val->id)}}" method="post">

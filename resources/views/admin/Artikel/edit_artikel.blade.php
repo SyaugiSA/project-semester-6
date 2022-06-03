@@ -63,7 +63,7 @@
                                             <input type="text" class="form-control datetimepicker-input  @error('tanggal')
                                             is-invalid
                                         @enderror"
-                                                data-target="#reservationdate" name="tanggal"/>
+                                                data-target="#reservationdate" name="tanggal" value="{{date('d/m/Y', strtotime($data->tanggal));}}"/>
                                             <div class="input-group-append" data-target="#reservationdate"
                                                 data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -88,7 +88,7 @@
 
                                     <div class="form-group">
                                         <label for="">Foto Event</label>
-                                        <input type="file" name="images[]" multiple class="form-control" accept="image/png, image/jpeg">
+                                        <input type="file" name="images" multiple class="form-control" accept="image/png, image/jpeg">
                                         {{-- @if ($errors->has('files'))
                                             @foreach ($errors->get('files') as $error)
                                                 <span class="invalid-feedback" role="alert">
@@ -97,6 +97,10 @@
                                             @endforeach
                                         @endif --}}
 
+                                    </div>
+                                    <div class="form-group">
+
+                                        <img src="{{'/storage/'.$data->gambar}}" width="175px" height="150px" alt="">
                                     </div>
 
 

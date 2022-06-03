@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\artikel;
 use App\Models\donasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +37,9 @@ class HomeController extends Controller
                 
         )->where('is_actived','=', 1)->get();
 
-        return view('User.partial.home' ,compact('data'));
+        $artikel = artikel::all();
+
+        return view('User.partial.home' ,compact('data','artikel'));
 
     }
 

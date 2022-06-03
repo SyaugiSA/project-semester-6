@@ -76,7 +76,7 @@ class ArtikelAdminController extends Controller
      */
     public function edit($id)
     {
-        $data = artikel::find($id)->first();
+        $data = artikel::find($id);
 
         return view('admin.Artikel.edit_artikel', compact('data'));
     }
@@ -90,14 +90,14 @@ class ArtikelAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $image = $request->image;
+        $image = $request->images;
         $data = artikel::find($id);
 
         if($image != null){
-            $photo = $request->file('image');
+            $photo = $request->file('images');
             $name = Str::random(20);
             $newFile = $name . '.'. $photo->extension();
-            $path = $photo->storeAs('foto-artikel', $newFile, 'oublic');
+            $path = $photo->storeAs('foto-artikel', $newFile, 'public');
 
             Storage::disk('local')->delete('public/foto-artikel', basename($data['gambar']));
 
@@ -111,7 +111,7 @@ class ArtikelAdminController extends Controller
             $data->tanggal = $request->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
         }
         $data->update();
-
+        // dd($data);
         return redirect()->route('artikel-admin.index')->with(['success'=>'Berhasil memperbarui artikel']);
     }
 
