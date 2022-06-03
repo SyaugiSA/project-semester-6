@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ArtikelController;
 use App\Http\Controllers\User\DonateController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\User\SetingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,7 +51,8 @@ Route::get('/seting', function () {
     return view('User.halaman.seting-akun');
 })->middleware('auth');
 
-
+Route::post('/seting/{id}', [SetingController::class,'update_account'])->name('setting.update_account');
+// Route::post('/seting/', [SetingController::class,'update_pws'])->name('setting.update_pws');
 // Route::get('/donass/detail', function () {
 //     return view('User.halaman.donation-detail');
 // })->middleware('auth');

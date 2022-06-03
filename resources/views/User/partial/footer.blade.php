@@ -3,7 +3,7 @@
     <div class="row border-top pt-5">
         <div class="col-md-4">
             <div class="row">
-                <h4>Untuk informasi lebih lanjut bisa menghubungi takmir masjid.</h4>
+                <h4>Untuk informasi lebih lanjut bisa menghubungi Pengurus Laznas Al-Irsyad.</h4>
             </div>
             <div class="row contact">
                 <div class="col">
@@ -42,12 +42,12 @@
                 <div class="col">
                     <h5>Start Learning</h5>
                     <p>Photo</p>
-                    <p>Kas-Masjid</p>
-                    <p>Events</p>
+                    <p>Donasi</p>
+                    <p>Artikel</p>
 
                 </div>
                 <div class="col">
-                    <h5>Masjid</h5>
+                    <h5>Laznas</h5>
                     <p>Get Involved</p>
                     <p>Donate</p>
                     <p>Sponsor</p>
