@@ -39,86 +39,31 @@
     <div class="container-fluid container-lg">
         <div class="list-card-takmirs">
                 <div class="card-takmirs"> 
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
+                    <img class="card-img" src="{{ asset('image/pengurus2.png') }}" alt="">
                     <div class="container-card-takmirs">
-                        <h3>Pimpinan Harian Cabang Ketua</h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
+                        <h3>Direktur</h3>
+                        <h4>Faris Basagili</h4>
+                        <p>081334679110</p>
                     </div>
                 </div>
 
                 <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
+                    <img class="card-img" src="{{ asset('image/pengurus2.png') }}" alt="">
                     <div class="container-card-takmirs">
-                        <h3>Ketua Pengurus Cabang Wanita-Putri</h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
+                        <h3>Ketua Syariah</h3>
+                        <h4>Abu Bakar Jabli</h4>
+                        <p>081664782980</p>
                     </div>
                 </div> 
 
                 <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
+                    <img class="card-img" src="{{ asset('image/pengurus2.png') }}" alt="">
                     <div class="container-card-takmirs">
-                        <h3>Ketua Pengurus Cabang Pemuda-Pelajar </h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
+                        <h3>Ketua Keuangan </h3>
+                        <h4>Vesel Zakin</h4>
+                        <p>081456125749</p>
                     </div>
                 </div> 
-
-                <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
-                    <div class="container-card-takmirs">
-                        <h3>Sekretaris</h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
-                    </div>
-                </div>
-
-                <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
-                    <div class="container-card-takmirs">
-                        <h3>Bendahara</h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
-                    </div>
-                </div>
-
-                <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
-                    <div class="container-card-takmirs">
-                        <h3> Ketua Lajnah Pendidikan & Pengajaran</h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
-                    </div>
-                </div>
-
-                <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
-                    <div class="container-card-takmirs">
-                        <h3>Ketua Lajnah Dakwah</h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
-                    </div>
-                </div> 
-
-                <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/pengurus.png') }}" alt="">
-                    <div class="container-card-takmirs">
-                        <h3>Ketua Lajnah Sosial Ekonomi</h3>
-                        <h4>lorem</h4>
-                        <p>081</p>
-                        <p> Jalan </p>
-                    </div>
-                </div> 
-
-                
 
             </div> 
     </div>
@@ -128,7 +73,7 @@
 <section class="___class_+?0___">
     <div class="container shadow card-sejarah-masjid">
         <h4 class="text-center">AL-IRSYAD AL-ISLAMIYYAH </h4>
-        <img class="card-img" src="{{ asset('image/masjid2.jpg') }}" alt="">
+        <img class="card-img" src="{{ asset('image/masjid6.jpg') }}" alt="">
     </div>
 
     <div class="card-profile-masjid">
