@@ -16,8 +16,8 @@ pipeline {
         }
       steps {
         sh 'php --version'
-        sh 'composer i'
         sh 'cp .env.example .env'
+        sh 'composer i'
         sh 'echo DB_HOST=${DB_HOST} >> .env'
         sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
         sh 'echo DB_PORT=${DB_PORT} >> .env'
