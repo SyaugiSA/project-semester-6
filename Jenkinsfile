@@ -8,14 +8,17 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Build... \n'
-        sh "ls -lisa"
+        sh 'php --version'
+        sh 'composer install'
+        sh 'composer update'
+        sh 'cp .env.example .env'
+        sh 'php artisan key:generate'
       }
     }
     
     stage('Test') {
       steps {
-        echo 'Runningg Test.. \n'
+        sh 'php artisan test'
       }
     }
     
