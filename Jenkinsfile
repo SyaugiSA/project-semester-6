@@ -10,7 +10,7 @@ pipeline {
         environment {
             DB_PORT = 3306
             DB_DATABASE = credentials('project-semester-6-db')
-            DB_HOST = 20.90.159.103:8001
+            DB_HOST = 0.0.0.0:8001
             DB_PASSWORD = 
             DB_USERNAME = 'root'
         }
