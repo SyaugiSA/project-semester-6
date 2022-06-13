@@ -11,7 +11,7 @@ pipeline {
             DB_PORT = 3306
             DB_DATABASE = credentials('project-semester-6-db')
             DB_HOST = '0.0.0.0'
-            DB_PASSWORD = 
+            DB_PASSWORD = ''
             DB_USERNAME = 'root'
         }
       steps {
