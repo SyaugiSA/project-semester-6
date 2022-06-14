@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
         environment {
             DB_PORT = 3306
-            DB_DATABASE = credentials('project-semester-6-db')
+            DB_DATABASE = 'project-semester-6'
             DB_HOST = '0.0.0.0'
             DB_PASSWORD = ''
             DB_USERNAME = 'root'
