@@ -23,7 +23,7 @@ pipeline {
         sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
         sh 'echo DB_PORT=${DB_PORT} >> .env'
         sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
-        // sh 'php artisan key:generate'
+        sh 'php artisan key:generate'
         sh 'php artisan migrate'
       }
     }
