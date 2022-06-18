@@ -31,12 +31,13 @@ pipeline {
     stage('Test') {
       steps {
         sh 'php artisan test'
+        sh './vendor/bin/phponit'
       }
     }
     
     stage('Deploy') {
       steps {
-        echo 'Successs... \n'
+        sh 'git pull'
       }
     }
   }
