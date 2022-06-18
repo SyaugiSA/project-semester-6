@@ -37,7 +37,7 @@ pipeline {
     
     stage('Deploy') {
       steps {
-        sh 'echo nuild succes'
+        sh 'echo succes'
       }
     }
   }
