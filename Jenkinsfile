@@ -38,6 +38,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'git pull'
+        sh 'echo succes'
       }
     }
   }
