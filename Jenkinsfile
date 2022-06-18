@@ -17,6 +17,8 @@ pipeline {
       steps {
         sh 'php --version'
         sh 'cp .env.example .env'
+        sh 'cp composer.json composer.phar'
+        sh 'php composer.phar install'
         sh 'composer install'
         sh 'echo DB_HOST=${DB_HOST} >> .env'
         sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
